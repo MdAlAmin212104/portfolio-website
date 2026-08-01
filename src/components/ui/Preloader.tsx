@@ -44,7 +44,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
         >
           {/* Top Brand Name */}
           <div className="w-full max-w-7xl flex justify-between items-center text-xs tracking-widest text-muted/70 uppercase">
-            <span>Alamin Hossain</span>
+            <span>Md Al Amin Islam</span>
             <span>Portfolio &copy; 2026</span>
           </div>
 

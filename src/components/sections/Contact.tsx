@@ -6,7 +6,7 @@ import { PERSONAL_INFO } from "@/data/portfolioData";
 import { SectionHeader } from "../ui/SectionHeader";
 import { MagneticButton } from "../ui/MagneticButton";
 import { Mail, Copy, Check, Send, MapPin, Clock, Sparkles } from "lucide-react";
-import { FaGithub, FaLinkedin, FaXTwitter, FaDribbble } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa6";
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
@@ -117,19 +117,18 @@ export function Contact() {
                 {[
                   { icon: FaGithub, href: PERSONAL_INFO.github, label: "GitHub" },
                   { icon: FaLinkedin, href: PERSONAL_INFO.linkedin, label: "LinkedIn" },
-                  { icon: FaXTwitter, href: PERSONAL_INFO.twitter, label: "Twitter" },
-                  { icon: FaDribbble, href: PERSONAL_INFO.dribbble, label: "Dribbble" },
+                  { icon: FaFacebook, href: PERSONAL_INFO.facebook, label: "Facebook" },
                 ].map((social) => (
                   <MagneticButton key={social.label} strength={0.3}>
                     <a
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full glass-dock flex items-center justify-center text-muted hover:text-accent transition-colors"
+                      className="w-11 h-11 rounded-xl glass-dock flex items-center justify-center text-white/80 hover:text-accent hover:border-accent/60 hover:bg-accent/15 transition-all duration-300 border border-white/10 shadow-md"
                       aria-label={social.label}
                       data-cursor="pointer"
                     >
-                      <social.icon className="w-4 h-4" />
+                      <social.icon className="w-5 h-5" />
                     </a>
                   </MagneticButton>
                 ))}

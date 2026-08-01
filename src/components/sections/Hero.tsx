@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import { MagneticButton } from "../ui/MagneticButton";
 import { ArrowDown, Download, Sparkles, Code2 } from "lucide-react";
-import { FaGithub, FaLinkedin, FaXTwitter, FaDribbble } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa6";
 
 export function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -33,7 +33,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dock text-xs sm:text-sm font-medium text-accent border border-accent/20"
           >
             <Sparkles className="w-4 h-4 text-accent animate-spin-slow" />
-            <span>Crafting High-Performance Web Experiences</span>
+            <span>Crafting High-Performance Shopify Apps & Stores</span>
           </motion.div>
 
           {/* Large Name */}
@@ -77,7 +77,7 @@ export function Hero() {
             {PERSONAL_INFO.bio}
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* Prominent High-Visibility CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -87,11 +87,11 @@ export function Hero() {
             <MagneticButton strength={0.25}>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-sm font-bold text-white bg-gradient-to-r from-primary via-secondary to-accent shadow-neon hover:opacity-95 transition-opacity"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-sm font-bold text-white bg-gradient-to-r from-primary via-secondary to-accent shadow-neon hover:shadow-[0_0_30px_rgba(79,140,255,0.6)] hover:scale-105 transition-all duration-300 border border-white/20"
                 data-cursor="pointer"
               >
                 <span>Hire Me</span>
-                <Sparkles className="w-4 h-4" />
+                <Sparkles className="w-4 h-4 text-accent" />
               </a>
             </MagneticButton>
 
@@ -100,7 +100,7 @@ export function Hero() {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full text-sm font-semibold text-white glass-card hover:bg-white/10 transition-colors"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-sm font-bold text-white glass-card border border-primary/40 hover:border-accent/80 hover:bg-primary/20 hover:shadow-neon hover:scale-105 transition-all duration-300 shadow-lg"
                 data-cursor="pointer"
               >
                 <Download className="w-4 h-4 text-accent" />
@@ -109,7 +109,7 @@ export function Hero() {
             </MagneticButton>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Social Links Connected */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -121,19 +121,18 @@ export function Hero() {
               {[
                 { icon: FaGithub, href: PERSONAL_INFO.github, label: "GitHub" },
                 { icon: FaLinkedin, href: PERSONAL_INFO.linkedin, label: "LinkedIn" },
-                { icon: FaXTwitter, href: PERSONAL_INFO.twitter, label: "Twitter" },
-                { icon: FaDribbble, href: PERSONAL_INFO.dribbble, label: "Dribbble" },
+                { icon: FaFacebook, href: PERSONAL_INFO.facebook, label: "Facebook" },
               ].map((social) => (
                 <MagneticButton key={social.label} strength={0.3}>
                   <a
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full glass-dock flex items-center justify-center text-muted hover:text-accent hover:border-accent/40 transition-colors"
+                    className="w-11 h-11 rounded-xl glass-dock flex items-center justify-center text-white/80 hover:text-accent hover:border-accent/60 hover:bg-accent/15 transition-all duration-300 border border-white/10 shadow-md"
                     aria-label={social.label}
                     data-cursor="pointer"
                   >
-                    <social.icon className="w-4 h-4" />
+                    <social.icon className="w-5 h-5" />
                   </a>
                 </MagneticButton>
               ))}
@@ -141,25 +140,29 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* RIGHT COLUMN: 3D Animated Hero Avatar & Floating Badges */}
+        {/* RIGHT COLUMN: Enlarged Professional Hero Image Showcase */}
         <div className="lg:col-span-5 flex justify-center items-center relative z-10 mt-8 lg:mt-0">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative w-72 h-72 sm:w-96 sm:h-96 flex items-center justify-center"
+            className="relative w-full max-w-[460px] h-[480px] sm:h-[540px] flex items-center justify-center"
           >
-            {/* Glowing Gradient Rings */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-accent opacity-30 blur-2xl animate-pulse-glow" />
-            <div className="absolute -inset-4 rounded-full border border-primary/30 animate-spin-slow" />
-            <div className="absolute -inset-8 rounded-full border border-secondary/20 animate-spin-slow [animation-direction:reverse]" />
+            {/* Glowing Gradient Ambient Aura */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary via-secondary to-accent opacity-35 blur-3xl animate-pulse-glow" />
+            <div className="absolute -inset-4 rounded-3xl border border-primary/30 animate-spin-slow" />
+            <div className="absolute -inset-8 rounded-3xl border border-secondary/20 animate-spin-slow [animation-direction:reverse]" />
 
-            {/* Avatar Card Container with Glassmorphism */}
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl p-3 glass-card shadow-2xl flex flex-col items-center justify-center overflow-hidden border border-white/20">
+            {/* Glassmorphic Image Container */}
+            <div className="relative w-full h-full rounded-3xl p-3.5 glass-card shadow-2xl flex flex-col items-center justify-center overflow-hidden border border-white/20 group hover:border-accent/50 transition-all duration-500">
               <img
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop"
+                src="/images/Hero-image.png"
                 alt={PERSONAL_INFO.name}
-                className="w-full h-full object-cover rounded-2xl shadow-inner filter brightness-105 contrast-105"
+                className="w-full h-full object-cover object-top rounded-2xl filter brightness-105 contrast-105 transform group-hover:scale-105 transition-transform duration-700"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "/images/cover-profile.webp";
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19]/80 via-transparent to-transparent pointer-events-none" />
             </div>
@@ -168,19 +171,19 @@ export function Hero() {
             <motion.div
               animate={{ y: [-8, 8, -8] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -left-4 px-4 py-2 rounded-2xl glass-dock border border-primary/30 text-xs font-mono font-semibold text-white shadow-neon flex items-center gap-2"
+              className="absolute -top-5 -left-5 px-4 py-2.5 rounded-2xl glass-dock border border-primary/40 text-xs font-mono font-semibold text-white shadow-neon flex items-center gap-2 z-20 backdrop-blur-md"
             >
-              <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-              <span>Next.js 15 + React 19</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-primary animate-ping" />
+              <span>Shopify App Developer</span>
             </motion.div>
 
             <motion.div
               animate={{ y: [8, -8, 8] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-4 -right-4 px-4 py-2 rounded-2xl glass-dock border border-accent/30 text-xs font-mono font-semibold text-white shadow-neon-cyan flex items-center gap-2"
+              className="absolute -bottom-5 -right-5 px-4 py-2.5 rounded-2xl glass-dock border border-accent/40 text-xs font-mono font-semibold text-white shadow-neon-cyan flex items-center gap-2 z-20 backdrop-blur-md"
             >
               <Sparkles className="w-3.5 h-3.5 text-accent" />
-              <span>WebGL & GSAP 3D</span>
+              <span>Shopify Developer</span>
             </motion.div>
           </motion.div>
         </div>

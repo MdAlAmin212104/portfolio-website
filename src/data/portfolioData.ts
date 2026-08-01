@@ -1,3 +1,5 @@
+import { FaFacebook } from "react-icons/fa6";
+
 export interface Project {
   id: string;
   title: string;
@@ -45,28 +47,33 @@ export interface ServiceItem {
 }
 
 export const PERSONAL_INFO = {
-  name: "Alamin Hossain",
-  role: "Senior Frontend Engineer & Creative Developer",
+  name: "Md Al Amin Islam",
+  role: "Shopify App & Shopify Developer",
+
   roles: [
-    "Senior Frontend Engineer",
-    "Creative Web Developer",
-    "3D Interactive Architect",
-    "UI/UX Systems Specialist",
+    "Shopify App Developer",
+    "Shopify Theme Developer",
+    "Shopify Expert",
+    "Frontend Developer",
+    "React & Next.js Developer",
+    "MERN Stack Developer",
   ],
-  bio: "Crafting digital experiences at the intersection of pixel-perfect engineering, fluid animations, and high-performance WebGL graphics.",
-  longBio: "With over 5 years of experience architecting web platforms for global brands, startups, and agencies, I specialize in building ultra-responsive, accessible, and visual-first web applications. My work blends cutting-edge design aesthetics (Awwwards-inspired motion) with solid engineering principles (Next.js 15, React 19, TypeScript, dynamic WebGL shaders).",
+
+  bio: "Building scalable Shopify Apps, high-converting Shopify Themes, and modern eCommerce experiences with Next.js, React, TypeScript, and Shopify's latest technologies.",
+
+  longBio:
+    "I am a specialized Shopify App & Fullstack Web Developer with 3+ years of hands-on experience crafting high-impact eCommerce solutions and custom web applications. Having successfully delivered 150+ client projects for global brands and merchants, I excel in developing scalable Shopify Apps, custom Liquid & Hydrogen themes, Theme App Extensions, GraphQL/REST APIs, and headless storefronts. By combining Next.js 15, React 19, TypeScript, and Node.js with Shopify's modern ecosystem, I engineer ultra-fast (95+ Lighthouse), conversion-optimized digital experiences engineered for business growth. I am ready to bring engineering excellence, clean code standards, and rapid execution to remote teams, contract engagements, and full-time engineering roles.",
   location: "Dhaka, Bangladesh (UTC+6) • Remote Worldwide",
   availability: "Available for Select Contracts & Full-time Roles",
-  email: "alamin.dev.contact@gmail.com",
-  github: "https://github.com",
-  linkedin: "https://linkedin.com",
-  twitter: "https://x.com",
-  dribbble: "https://dribbble.com",
+  email: "mdalamin212104@gmail.com",
+  github: "https://github.com/MdAlAmin212104",
+  linkedin: "https://www.linkedin.com/in/al-amin21",
+  facebook: "https://www.facebook.com/md.al.amin.716294/",
   stats: [
-    { label: "Years Experience", value: 5, suffix: "+" },
-    { label: "Projects Completed", value: 35, suffix: "+" },
-    { label: "Happy Clients", value: 24, suffix: "" },
-    { label: "Code Commits", value: 2800, suffix: "+" },
+    { label: "Years Experience", value: 3, suffix: "+" },
+    { label: "Projects Completed", value: 150, suffix: "+" },
+    { label: "Happy Clients", value: 120, suffix: "+" },
+    { label: "Shopify Apps Published", value: 2, suffix: "" },
   ],
 };
 

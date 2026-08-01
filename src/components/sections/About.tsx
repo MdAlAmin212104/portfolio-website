@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import { SectionHeader } from "../ui/SectionHeader";
-import { Code, Cpu, Globe, Rocket, Award, ShieldCheck, Terminal } from "lucide-react";
+import { Globe, Rocket, Terminal, ShoppingBag, Palette, Layout, Code2, Cpu, Zap, ShieldCheck } from "lucide-react";
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const [count, setCount] = useState(0);
@@ -40,14 +40,68 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
+const TECH_HIGHLIGHTS = [
+  {
+    title: "Shopify Architecture",
+    subtitle: "Custom Apps, Liquid & Storefront APIs",
+    icon: ShoppingBag,
+    color: "text-accent",
+  },
+  {
+    title: "Modern Web Stack",
+    subtitle: "Next.js 15, React 19, TypeScript & MERN",
+    icon: Cpu,
+    color: "text-primary",
+  },
+  {
+    title: "Performance & Conversion",
+    subtitle: "95+ Lighthouse Score & Ultra-fast UX",
+    icon: Zap,
+    color: "text-amber-400",
+  },
+  {
+    title: "Global Reach",
+    subtitle: "Remote collaboration with clients worldwide",
+    icon: Globe,
+    color: "text-emerald-400",
+  },
+];
+
+const SERVICES_ABOUT = [
+  {
+    title: "Shopify App Development",
+    description: "Building custom, scalable Shopify apps tailored for business needs.",
+    icon: ShoppingBag,
+    color: "from-primary to-accent",
+  },
+  {
+    title: "Shopify Theme Customization",
+    description: "Customize Shopify themes for better UI, UX, and faster performance.",
+    icon: Palette,
+    color: "from-secondary to-primary",
+  },
+  {
+    title: "Shopify Store Design / Redesign",
+    description: "Professional store design or redesign to make your brand stand out.",
+    icon: Layout,
+    color: "from-accent to-secondary",
+  },
+  {
+    title: "Web Development",
+    description: "Frontend & MERN stack development for modern, scalable web solutions.",
+    icon: Code2,
+    color: "from-primary to-secondary",
+  },
+];
+
 export function About() {
   return (
     <section id="about" className="relative py-24 px-6 sm:px-8 md:px-12">
       <div className="w-full max-w-7xl mx-auto">
         <SectionHeader
           badge="About Me"
-          title="Bridging High Performance Engineering & Creative Aesthetics"
-          subtitle="Passionate about designing digital products that combine lightning-fast performance, accessibility, and unforgettable visual motion."
+          title="Creative Engineering Journey"
+          subtitle="Building Web Solutions that Scale & Inspire"
         />
 
         {/* Top Story & Statistics Grid */}
@@ -73,21 +127,23 @@ export function About() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              <div className="glass-dock p-4 rounded-2xl border border-white/5 flex items-center gap-3">
-                <Globe className="w-8 h-8 text-accent shrink-0" />
-                <div>
-                  <h4 className="text-sm font-bold text-white">Global Reach</h4>
-                  <p className="text-xs text-muted">Remote with clients worldwide</p>
-                </div>
-              </div>
-              <div className="glass-dock p-4 rounded-2xl border border-white/5 flex items-center gap-3">
-                <Rocket className="w-8 h-8 text-secondary shrink-0" />
-                <div>
-                  <h4 className="text-sm font-bold text-white">Speed First</h4>
-                  <p className="text-xs text-muted">Optimized 95+ Lighthouse score</p>
-                </div>
-              </div>
+            {/* Tech & Performance Feature Badges Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-white/10">
+              {TECH_HIGHLIGHTS.map((highlight) => {
+                const IconComp = highlight.icon;
+                return (
+                  <div
+                    key={highlight.title}
+                    className="glass-dock p-4 rounded-2xl border border-white/10 flex items-start gap-3 hover:border-accent/40 transition-colors"
+                  >
+                    <IconComp className={`w-6 h-6 ${highlight.color} shrink-0 mt-0.5`} />
+                    <div>
+                      <h4 className="text-sm font-bold text-white">{highlight.title}</h4>
+                      <p className="text-xs text-muted leading-tight mt-0.5">{highlight.subtitle}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
 
@@ -111,6 +167,37 @@ export function About() {
               </motion.div>
             ))}
           </div>
+        </div>
+
+        {/* Core Services / Competencies Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {SERVICES_ABOUT.map((service, idx) => {
+            const IconComponent = service.icon;
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="glass-card p-6 rounded-3xl flex flex-col justify-between space-y-4 group hover:border-accent/40 hover:shadow-neon-cyan transition-all duration-300"
+              >
+                <div className="space-y-3">
+                  <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${service.color} p-[1px] shadow-lg`}>
+                    <div className="w-full h-full bg-[#0B0F19] rounded-[15px] flex items-center justify-center text-white">
+                      <IconComponent className="w-6 h-6 text-accent" />
+                    </div>
+                  </div>
+                  <h4 className="text-lg font-bold text-white group-hover:text-accent transition-colors">
+                    {service.title}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-muted leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

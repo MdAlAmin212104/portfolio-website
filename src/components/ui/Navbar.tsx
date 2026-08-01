@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MagneticButton } from "./MagneticButton";
-import { Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 const NAV_LINKS = [
@@ -66,21 +66,30 @@ export function Navbar() {
               : "bg-transparent border-transparent py-4"
           }`}
         >
-          {/* Brand Logo */}
+          {/* Brand Logo with Rounded Avatar & Glowing Border */}
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, "#hero")}
-            className="flex items-center gap-2.5 group"
+            className="flex items-center gap-3 group"
             data-cursor="pointer"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary via-secondary to-accent p-[1px] shadow-[0_0_15px_rgba(79,140,255,0.3)] transition-transform duration-300 group-hover:scale-105">
-              <div className="w-full h-full bg-[#0B0F19] rounded-[11px] flex items-center justify-center font-bold text-white font-mono text-sm">
-                AH
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary via-secondary to-accent p-[2px] shadow-[0_0_15px_rgba(79,140,255,0.4)] transition-transform duration-300 group-hover:scale-105">
+              <div className="w-full h-full bg-[#0B0F19] rounded-full overflow-hidden flex items-center justify-center border border-white/10">
+                <img
+                  src="/images/cover-profile.webp"
+                  alt="Alamin I."
+                  className="w-full h-full object-cover object-center rounded-full"
+                  onError={(e) => {
+                    // Fallback to initials if image is not uploaded yet
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                  }}
+                />
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-bold text-white tracking-wide group-hover:text-primary transition-colors">
-                Alamin H.
+              <span className="text-sm font-bold text-white tracking-wide group-hover:text-accent transition-colors">
+                Alamin I.
               </span>
               <span className="text-[10px] text-muted flex items-center gap-1 font-mono">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -117,13 +126,13 @@ export function Navbar() {
             })}
           </ul>
 
-          {/* Right Action Button */}
+          {/* Right Action Button ("Hire Me" with Vibrant Interactive Gradient & Glow) */}
           <div className="hidden sm:flex items-center gap-3">
             <MagneticButton strength={0.25}>
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, "#contact")}
-                className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-primary via-secondary to-accent hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(79,140,255,0.3)]"
+                className="relative inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold text-white bg-gradient-to-r from-primary via-secondary to-accent shadow-neon hover:shadow-[0_0_30px_rgba(79,140,255,0.6)] hover:scale-105 transition-all duration-300 border border-white/20"
                 data-cursor="pointer"
               >
                 <span>Hire Me</span>
@@ -173,9 +182,9 @@ export function Navbar() {
                 <a
                   href="#contact"
                   onClick={(e) => handleNavClick(e, "#contact")}
-                  className="w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r from-primary to-accent shadow-neon text-center"
+                  className="w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r from-primary via-secondary to-accent shadow-neon text-center"
                 >
-                  Let's Work Together
+                  Hire Me
                 </a>
                 <p className="text-xs text-muted font-mono">{PERSONAL_INFO.email}</p>
               </div>

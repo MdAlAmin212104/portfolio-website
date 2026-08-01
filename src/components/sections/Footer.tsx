@@ -39,7 +39,7 @@ export function Footer() {
                 </div>
               </div>
               <span className="text-lg font-bold text-white tracking-wide">
-                Alamin Hossain
+                Md Al Amin Islam
               </span>
             </a>
             <p className="text-xs text-muted max-w-sm">
@@ -68,7 +68,7 @@ export function Footer() {
 
         {/* Bottom Rights Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted/70 font-mono">
-          <p>&copy; {new Date().getFullYear()} Alamin Hossain. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Md Al Amin Islam. All rights reserved.</p>
           <p className="flex items-center gap-1">
             Built with Next.js 15, React 19 & Framer Motion
           </p>

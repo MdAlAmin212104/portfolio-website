@@ -87,8 +87,7 @@ export default function RootLayout({
     sameAs: [
       PERSONAL_INFO.github,
       PERSONAL_INFO.linkedin,
-      PERSONAL_INFO.twitter,
-      PERSONAL_INFO.dribbble,
+      PERSONAL_INFO.facebook,
     ],
     knowsAbout: [
       "Next.js",
