@@ -32,13 +32,13 @@ export function BackgroundCanvas() {
   const [isMobile, setIsMobile] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
 
-  // Mouse spotlight spring physics with ultra-smooth easing
+  // Mouse spotlight spring coordinates with ultra-soft easing
   const mouseX = useMotionValue(-800);
   const mouseY = useMotionValue(-800);
-  const springX = useSpring(mouseX, { damping: 45, stiffness: 120 });
-  const springY = useSpring(mouseY, { damping: 45, stiffness: 120 });
+  const springX = useSpring(mouseX, { damping: 50, stiffness: 100 });
+  const springY = useSpring(mouseY, { damping: 50, stiffness: 100 });
 
-  // 1. Generate Organic Bubbles with unique sizes, blurs, and paths
+  // 1. Generate Organic Bubbles & Volumetric Spheres
   useEffect(() => {
     const mobileCheck = window.innerWidth < 768;
     setIsMobile(mobileCheck);
@@ -46,8 +46,8 @@ export function BackgroundCanvas() {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setReducedMotion(prefersReduced);
 
-    const count = mobileCheck ? 10 : 28;
-    const blurClasses = ["blur-md", "blur-lg", "blur-xl", "blur-2xl"];
+    const count = mobileCheck ? 12 : 32;
+    const blurClasses = ["blur-md", "blur-lg", "blur-xl", "blur-2xl", "blur-3xl"];
     const colorClasses = [
       "from-primary/25 via-secondary/15 to-transparent",
       "from-secondary/25 via-accent/15 to-transparent",
@@ -57,10 +57,10 @@ export function BackgroundCanvas() {
 
     const generated: BubbleData[] = Array.from({ length: count }, (_, i) => ({
       id: i,
-      left: (i * (100 / count) + Math.random() * 10) % 95,
-      size: Math.random() * 160 + 90, // 90px - 250px
-      duration: Math.random() * 18 + 22, // 22s - 40s
-      delay: Math.random() * 12,
+      left: (i * (100 / count) + Math.random() * 8) % 96,
+      size: Math.random() * 180 + 100, // 100px - 280px
+      duration: Math.random() * 20 + 24, // 24s - 44s
+      delay: Math.random() * 14,
       blurClass: blurClasses[i % blurClasses.length],
       maxOpacity: Math.random() * 0.45 + 0.25,
       colorClass: colorClasses[i % colorClasses.length],
@@ -69,7 +69,7 @@ export function BackgroundCanvas() {
     setBubbles(generated);
   }, []);
 
-  // 2. Multi-Depth Canvas Particle Field & Shooting Stars System
+  // 2. Multi-Layered Natural Starfield, Constellations & Volumetric Light Rays
   useEffect(() => {
     if (reducedMotion) return;
 
@@ -82,7 +82,7 @@ export function BackgroundCanvas() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Dynamic theme color sampling
+    // Read dynamic CSS variables from theme
     const computedStyle = getComputedStyle(document.documentElement);
     const colorPrimary = computedStyle.getPropertyValue("--primary").trim() || "#4F8CFF";
     const colorSecondary = computedStyle.getPropertyValue("--secondary").trim() || "#7B61FF";
@@ -97,32 +97,29 @@ export function BackgroundCanvas() {
     };
     window.addEventListener("resize", handleResize);
 
-    // Multi-depth particle generation: 3 layers (Background, Midground, Foreground)
-    const particleCount = isMobile ? 80 : 280;
+    // Natural non-uniform distribution (Clustered Nebula Bands + Deep Field)
+    const particleCount = isMobile ? 90 : 320;
     const particles = Array.from({ length: particleCount }, (_, idx) => {
-      // Depth layer assignment: 0 = Deep Background (small, slow), 1 = Midground, 2 = Foreground (larger, faster)
-      const depth = idx < particleCount * 0.5 ? 0 : idx < particleCount * 0.85 ? 1 : 2;
+      const depth = idx < particleCount * 0.55 ? 0 : idx < particleCount * 0.88 ? 1 : 2;
 
-      const size = depth === 0 ? Math.random() * 1.2 + 0.4 : depth === 1 ? Math.random() * 2 + 1 : Math.random() * 3 + 1.8;
-      const speedMult = depth === 0 ? 0.08 : depth === 1 ? 0.2 : 0.4;
-      const baseAlpha = depth === 0 ? Math.random() * 0.4 + 0.1 : depth === 1 ? Math.random() * 0.6 + 0.2 : Math.random() * 0.75 + 0.35;
+      const size = depth === 0 ? Math.random() * 1.2 + 0.3 : depth === 1 ? Math.random() * 2.2 + 0.8 : Math.random() * 3.2 + 1.6;
+      const speedMult = depth === 0 ? 0.06 : depth === 1 ? 0.18 : 0.35;
+      const baseAlpha = depth === 0 ? Math.random() * 0.35 + 0.1 : depth === 1 ? Math.random() * 0.55 + 0.2 : Math.random() * 0.75 + 0.35;
 
-      // Clustered organic distribution band
-      const isClustered = Math.random() > 0.4;
-      const clusterCenterY = height * 0.45;
-      const y = isClustered
-        ? clusterCenterY + (Math.random() - 0.5) * height * 0.6
-        : Math.random() * height;
+      // Galaxy cluster band math (denser near middle-diagonal)
+      const inNebulaBand = Math.random() > 0.35;
+      const bandY = height * 0.5 + (Math.random() - 0.5) * height * 0.5;
+      const y = inNebulaBand ? bandY : Math.random() * height;
 
       return {
         x: Math.random() * width,
-        y: y,
+        y,
         vx: (Math.random() - 0.5) * speedMult,
         vy: (Math.random() - 0.5) * speedMult,
         size,
         baseAlpha,
         alpha: baseAlpha,
-        twinkleSpeed: Math.random() * 0.012 + 0.003,
+        twinkleSpeed: Math.random() * 0.01 + 0.003,
         twinklePhase: Math.random() * Math.PI * 2,
         color: colors[Math.floor(Math.random() * colors.length)],
         depth,
@@ -132,7 +129,7 @@ export function BackgroundCanvas() {
 
     // Shooting Stars Queue
     const shootingStars: ShootingStar[] = [];
-    let nextShootingStarTime = Math.random() * 400 + 300; // frames till next streak
+    let nextShootingStarTime = Math.random() * 350 + 250;
 
     let isTabActive = true;
     const handleVisibilityChange = () => {
@@ -156,15 +153,31 @@ export function BackgroundCanvas() {
       ctx.clearRect(0, 0, width, height);
       time += 0.016;
 
-      // --- A. Render Multi-Depth Particles ---
+      // --- A. Render Volumetric Atmospheric Fog Band ---
+      const fogGrad = ctx.createRadialGradient(
+        width * 0.5,
+        height * 0.4,
+        100,
+        width * 0.5,
+        height * 0.4,
+        Math.max(width, height) * 0.8
+      );
+      fogGrad.addColorStop(0, `${colorPrimary}0A`);
+      fogGrad.addColorStop(0.5, `${colorSecondary}05`);
+      fogGrad.addColorStop(1, "transparent");
+
+      ctx.fillStyle = fogGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // --- B. Render Multi-Depth Organic Particles & Constellation Links ---
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
         // Organic sway using sine wave on x position
-        p.x += p.vx + Math.sin(time * 0.5 + p.sineOffset) * 0.05;
-        p.y += p.vy;
+        p.x += p.vx + Math.sin(time * 0.4 + p.sineOffset) * 0.04;
+        p.y += p.vy + Math.cos(time * 0.4 + p.sineOffset) * 0.03;
 
-        // Wrap edges smoothly
+        // Wrap viewport edges
         if (p.x < -20) p.x = width + 20;
         if (p.x > width + 20) p.x = -20;
         if (p.y < -20) p.y = height + 20;
@@ -175,38 +188,59 @@ export function BackgroundCanvas() {
           p.baseAlpha +
           Math.sin(time * p.twinkleSpeed * 60 + p.twinklePhase) * (p.baseAlpha * 0.45);
 
-        // Render particle dot
+        // Draw node
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.globalAlpha = Math.max(0.05, Math.min(1, p.alpha));
         ctx.fill();
 
-        // Foreground particles get soft blur glow
+        // Soft outer glow for foreground particles
         if (p.depth === 2) {
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size * 2.8, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
-          ctx.globalAlpha = p.alpha * 0.12;
+          ctx.globalAlpha = p.alpha * 0.14;
           ctx.fill();
+        }
+
+        // Draw subtle constellation lines between close foreground particles
+        if (p.depth === 2 && !isMobile) {
+          for (let j = i + 1; j < Math.min(i + 15, particles.length); j++) {
+            const p2 = particles[j];
+            if (p2.depth === 2) {
+              const dx = p.x - p2.x;
+              const dy = p.y - p2.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 110) {
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = colorAccent;
+                ctx.globalAlpha = (1 - dist / 110) * 0.08;
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+              }
+            }
+          }
         }
       }
 
-      // --- B. Render Occasional Shooting Stars / Light Streaks ---
+      // --- C. Render Occasional Shooting Stars / Light Streaks ---
       nextShootingStarTime--;
       if (nextShootingStarTime <= 0 && shootingStars.length < 2) {
         shootingStars.push({
-          x: Math.random() * width * 0.8,
+          x: Math.random() * width * 0.85,
           y: Math.random() * height * 0.5,
-          length: Math.random() * 120 + 80,
-          speed: Math.random() * 8 + 6,
-          angle: Math.PI / 4 + (Math.random() - 0.5) * 0.2, // ~45 deg
+          length: Math.random() * 140 + 90,
+          speed: Math.random() * 8.5 + 6,
+          angle: Math.PI / 4 + (Math.random() - 0.5) * 0.2,
           alpha: 0,
-          maxAlpha: Math.random() * 0.4 + 0.3,
+          maxAlpha: Math.random() * 0.45 + 0.3,
           life: 0,
-          maxLife: Math.random() * 35 + 25,
+          maxLife: Math.random() * 40 + 25,
         });
-        nextShootingStarTime = Math.random() * 500 + 400; // 7-12 seconds
+        nextShootingStarTime = Math.random() * 450 + 350;
       }
 
       for (let sIdx = shootingStars.length - 1; sIdx >= 0; sIdx--) {
@@ -215,7 +249,6 @@ export function BackgroundCanvas() {
         star.x += Math.cos(star.angle) * star.speed;
         star.y += Math.sin(star.angle) * star.speed;
 
-        // Fade in and fade out
         if (star.life < star.maxLife * 0.3) {
           star.alpha = (star.life / (star.maxLife * 0.3)) * star.maxAlpha;
         } else {
@@ -237,7 +270,7 @@ export function BackgroundCanvas() {
         ctx.moveTo(headX, headY);
         ctx.lineTo(tailX, tailY);
         ctx.strokeStyle = streakGrad;
-        ctx.lineWidth = 1.6;
+        ctx.lineWidth = 1.8;
         ctx.globalAlpha = Math.max(0, star.alpha);
         ctx.stroke();
 
@@ -261,47 +294,63 @@ export function BackgroundCanvas() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-[#0B0F19] select-none">
-      {/* LAYER 1: Base Dark Atmosphere */}
+      {/* LAYER 1: Deep Base Atmosphere */}
       <div className="absolute inset-0 bg-[#0B0F19]" />
 
-      {/* LAYER 2: Slow Breathing Background Motion Wrapper */}
+      {/* LAYER 2: Slow Living Breathing Environment Wrapper */}
       <motion.div
         className="absolute inset-0"
-        animate={reducedMotion ? {} : { scale: [1, 1.02, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        animate={reducedMotion ? {} : { scale: [1, 1.025, 1], opacity: [0.9, 1, 0.9] }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
       >
-        {/* LAYER 3: Dynamic Theme Aurora Mesh Gradients */}
-        <div className="absolute inset-0 opacity-35 mix-blend-screen">
-          <div className="absolute top-[-20%] left-[-15%] w-[80vw] h-[80vw] rounded-full bg-gradient-to-tr from-primary/30 via-secondary/20 to-transparent blur-[160px] animate-aurora" />
-          <div className="absolute bottom-[-20%] right-[-15%] w-[70vw] h-[70vw] rounded-full bg-gradient-to-br from-accent/25 via-primary/20 to-transparent blur-[170px] animate-aurora [animation-delay:8s]" />
-          <div className="absolute top-[40%] left-[30%] w-[55vw] h-[55vw] rounded-full bg-gradient-to-r from-secondary/20 via-accent/15 to-transparent blur-[150px] animate-pulse-glow" />
+        {/* LAYER 3: Theme-Adaptive Aurora & Mesh Gradients */}
+        <div className="absolute inset-0 opacity-40 mix-blend-screen">
+          <div className="absolute top-[-20%] left-[-15%] w-[85vw] h-[85vw] rounded-full bg-gradient-to-tr from-primary/30 via-secondary/20 to-transparent blur-[160px] animate-aurora" />
+          <div className="absolute bottom-[-20%] right-[-15%] w-[75vw] h-[75vw] rounded-full bg-gradient-to-br from-accent/25 via-primary/20 to-transparent blur-[170px] animate-aurora [animation-delay:8s]" />
+          <div className="absolute top-[35%] left-[25%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-r from-secondary/20 via-accent/15 to-transparent blur-[150px] animate-pulse-glow" />
         </div>
 
-        {/* LAYER 4: Slowly Orbiting Ambient Light Sources */}
+        {/* LAYER 4: Rotating Volumetric Light Beams */}
         {!reducedMotion && (
-          <div className="absolute inset-0 opacity-25">
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
             <motion.div
-              className="absolute w-[450px] h-[450px] rounded-full bg-gradient-to-r from-primary/30 to-accent/20 blur-[130px]"
-              animate={{
-                x: [0, 120, -120, 0],
-                y: [0, -80, 80, 0],
-              }}
-              transition={{ duration: 40, repeat: Infinity, ease: "easeInOut" }}
-              style={{ top: "20%", left: "15%" }}
+              className="absolute top-[-20%] left-[10%] w-[150%] h-[400px] bg-gradient-to-r from-transparent via-primary/25 to-transparent blur-[80px]"
+              animate={{ rotate: [-12, 12, -12] }}
+              transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
             />
             <motion.div
-              className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-r from-secondary/30 to-primary/20 blur-[130px]"
-              animate={{
-                x: [0, -100, 100, 0],
-                y: [0, 90, -90, 0],
-              }}
-              transition={{ duration: 45, repeat: Infinity, ease: "easeInOut" }}
-              style={{ bottom: "25%", right: "20%" }}
+              className="absolute top-[40%] left-[-20%] w-[150%] h-[350px] bg-gradient-to-r from-transparent via-accent/20 to-transparent blur-[90px]"
+              animate={{ rotate: [12, -12, 12] }}
+              transition={{ duration: 38, repeat: Infinity, ease: "easeInOut" }}
             />
           </div>
         )}
 
-        {/* LAYER 5: Realistic Organic Floating Light Bubbles */}
+        {/* LAYER 5: Slowly Orbiting Ambient Light Sources */}
+        {!reducedMotion && (
+          <div className="absolute inset-0 opacity-30 pointer-events-none">
+            <motion.div
+              className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-r from-primary/30 to-accent/20 blur-[140px]"
+              animate={{
+                x: [0, 140, -140, 0],
+                y: [0, -90, 90, 0],
+              }}
+              transition={{ duration: 42, repeat: Infinity, ease: "easeInOut" }}
+              style={{ top: "15%", left: "10%" }}
+            />
+            <motion.div
+              className="absolute w-[450px] h-[450px] rounded-full bg-gradient-to-r from-secondary/30 to-primary/20 blur-[140px]"
+              animate={{
+                x: [0, -120, 120, 0],
+                y: [0, 100, -100, 0],
+              }}
+              transition={{ duration: 48, repeat: Infinity, ease: "easeInOut" }}
+              style={{ bottom: "20%", right: "15%" }}
+            />
+          </div>
+        )}
+
+        {/* LAYER 6: Realistic Organic Floating Light Bubbles */}
         {!reducedMotion && (
           <div className="absolute inset-0 opacity-55 mix-blend-screen">
             {bubbles.map((b) => (
@@ -312,12 +361,12 @@ export function BackgroundCanvas() {
                   left: `${b.left}%`,
                   width: b.size,
                   height: b.size,
-                  bottom: -300,
+                  bottom: -320,
                 }}
                 animate={{
-                  y: [0, -window.innerHeight - 500],
-                  x: [0, (b.id % 2 === 0 ? 60 : -60), (b.id % 3 === 0 ? -40 : 40), 0],
-                  scale: [0.85, 1.2, 0.85],
+                  y: [0, -window.innerHeight - 600],
+                  x: [0, (b.id % 2 === 0 ? 70 : -70), (b.id % 3 === 0 ? -50 : 50), 0],
+                  scale: [0.8, 1.25, 0.8],
                   opacity: [0, b.maxOpacity, b.maxOpacity, 0],
                 }}
                 transition={{
@@ -332,12 +381,12 @@ export function BackgroundCanvas() {
         )}
       </motion.div>
 
-      {/* LAYER 6: Multi-Depth Particle & Shooting Star Canvas */}
+      {/* LAYER 7: Multi-Depth Particle, Constellation & Shooting Star Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-85" />
 
-      {/* LAYER 7: Soft Eased Mouse Spotlight Glow */}
+      {/* LAYER 8: Soft Interactive Mouse Spotlight Glow */}
       <motion.div
-        className="absolute w-[550px] h-[550px] rounded-full bg-gradient-to-r from-primary/15 via-accent/10 to-transparent blur-[110px] pointer-events-none mix-blend-screen"
+        className="absolute w-[600px] h-[600px] rounded-full bg-gradient-to-r from-primary/15 via-accent/10 to-transparent blur-[120px] pointer-events-none mix-blend-screen"
         style={{
           x: springX,
           y: springY,
@@ -346,7 +395,7 @@ export function BackgroundCanvas() {
         }}
       />
 
-      {/* LAYER 8: Tactile Noise Texture Overlay */}
+      {/* LAYER 9: Tactile Noise Texture Overlay */}
       <div className="absolute inset-0 noise-overlay opacity-25 mix-blend-overlay" />
     </div>
   );
