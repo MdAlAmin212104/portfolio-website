@@ -36,6 +36,8 @@ export interface ExperienceItem {
   achievements: string[];
   techStack: string[];
   type: "Full-time" | "Contract" | "Freelance";
+  icon?: "briefcase" | "laptop" | "code" | "smartphone";
+  metrics?: { label: string; value: string }[];
 }
 
 export interface ServiceItem {
@@ -149,47 +151,107 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 export const EXPERIENCES: ExperienceItem[] = [
   {
     id: "exp-1",
-    role: "Lead Creative Frontend Engineer",
-    company: "Nexus Digital Agency",
-    period: "2024 — Present",
-    location: "Remote",
-    description: "Engineered high-end web portals and interactive brand experiences for Fortune 500 clients and VC-backed tech startups.",
+    role: "Software Engineer",
+    company: "SM Technology",
+    period: "2024 - Present",
+    location: "Dhaka, Bangladesh",
+    icon: "briefcase",
+    description: "Led development of enterprise-scale applications and architected scalable microservices architecture.",
     achievements: [
-      "Built 12+ award-nominated marketing sites using Next.js 15, GSAP, and Tailwind CSS.",
-      "Improved mobile load times by 45% through aggressive bundle splitting and WebGL shader optimization.",
-      "Mentored a team of 6 frontend developers on modern animation techniques and React 19 standards.",
+      "Led development of enterprise-scale applications and high-traffic web portals.",
+      "Architected scalable microservices architecture and headless e-commerce solutions.",
+      "Mentored junior developers and conducted thorough, high-standard code reviews.",
     ],
-    techStack: ["Next.js 15", "TypeScript", "GSAP", "Framer Motion", "Three.js", "Tailwind CSS"],
+    techStack: ["Next.js 15", "TypeScript", "Node.js", "Tailwind CSS", "Shopify API"],
     type: "Full-time",
+    metrics: [
+      { label: "PROJECTS", value: "12" },
+      { label: "TEAM SIZE", value: "30" },
+      { label: "TECHNOLOGIES", value: "15" },
+    ],
   },
   {
     id: "exp-2",
-    role: "Senior Frontend & Shopify Developer",
-    company: "Vanguard Commerce Studio",
-    period: "2022 — 2024",
-    location: "Remote",
-    description: "Spearheaded custom Shopify Plus theme development and Headless Next.js storefronts generating $20M+ in annual client GMV.",
+    role: "Mobile Application Developer",
+    company: "IT-WAY BD",
+    period: "2021 - 2023",
+    location: "Dhaka, Bangladesh",
+    icon: "laptop",
+    description: "Developed and maintained mobile applications, implemented RESTful APIs, and optimized database queries.",
     achievements: [
-      "Architected custom Liquid sections with modular schema configurations for 15+ high-volume stores.",
-      "Achieved average 96/100 Lighthouse performance scores across all deployed headless commerce apps.",
-      "Integrated real-time cart drawer animations and dynamic currency conversion engines.",
+      "Developed and maintained high-performance mobile applications.",
+      "Implemented RESTful APIs and database performance optimization.",
+      "Collaborated effectively with cross-functional product & engineering teams.",
     ],
-    techStack: ["Shopify Liquid", "Next.js", "GraphQL", "Tailwind CSS", "Framer Motion"],
+    techStack: ["React Native", "Flutter", "REST APIs", "Node.js", "Redux"],
     type: "Full-time",
+    metrics: [
+      { label: "PROJECTS", value: "10" },
+      { label: "TEAM SIZE", value: "15" },
+      { label: "TECHNOLOGIES", value: "5" },
+    ],
   },
   {
     id: "exp-3",
-    role: "Frontend Engineer & Interactive Web Developer",
-    company: "Aether Labs",
-    period: "2021 — 2022",
-    location: "Hybrid",
-    description: "Developed visual interactive web apps, WebGL particle backgrounds, and real-time dashboards for SaaS products.",
+    role: "Junior Mobile App Developer",
+    company: "ErutaSoft",
+    period: "2020 - 2021",
+    location: "Dhaka, Bangladesh",
+    icon: "laptop",
+    description: "Developed mobile applications using React Native and integrated third-party REST services.",
     achievements: [
-      "Created reusable UI component libraries adopted across 4 internal SaaS products.",
-      "Reduced CSS bundle size by 60% through custom utility extraction and Tailwind migration.",
+      "Developed mobile applications using React Native & JavaScript.",
+      "Collaborated with design team for pixel-perfect UI/UX implementation.",
+      "Integrated REST APIs and third-party cloud services.",
     ],
-    techStack: ["React", "TypeScript", "Three.js", "CSS Modules", "Webpack"],
+    techStack: ["React Native", "JavaScript", "REST APIs", "Git", "Figma"],
     type: "Full-time",
+    metrics: [
+      { label: "PROJECTS", value: "3" },
+      { label: "TEAM SIZE", value: "5" },
+      { label: "TECHNOLOGIES", value: "3" },
+    ],
+  },
+  {
+    id: "exp-4",
+    role: "Trainer (Part-Time)",
+    company: "E-Learning & Earning LTD",
+    period: "Oct 2019 - Mar 2020",
+    location: "Shyamoli square shopping mall, dhaka",
+    icon: "code",
+    description: "Conducted training sessions on mobile app development, teaching students Flutter and Dart best practices.",
+    achievements: [
+      "Conducted training sessions on mobile app development.",
+      "Taught students Flutter and Dart fundamentals & state management.",
+      "Mentored students in building real-world apps with hands-on learning.",
+    ],
+    techStack: ["Flutter", "Dart", "Firebase", "Mobile UI", "Teaching"],
+    type: "Contract",
+    metrics: [
+      { label: "PROJECTS", value: "0" },
+      { label: "TEAM SIZE", value: "20" },
+      { label: "TECHNOLOGIES", value: "3" },
+    ],
+  },
+  {
+    id: "exp-5",
+    role: "Student, Mobile Application Development",
+    company: "ICT Division",
+    period: "6 Months +",
+    location: "Asad gate, Dhaka",
+    icon: "smartphone",
+    description: "Completed intensive training in mobile app development, mastering Flutter and Dart.",
+    achievements: [
+      "Completed intensive training in mobile app development mastering Flutter and Dart.",
+      "Implemented hands-on projects to reinforce core technical expertise.",
+    ],
+    techStack: ["Flutter", "Dart", "OOP", "Mobile Architecture"],
+    type: "Full-time",
+    metrics: [
+      { label: "PROJECTS", value: "0" },
+      { label: "TEAM SIZE", value: "0" },
+      { label: "TECHNOLOGIES", value: "2" },
+    ],
   },
 ];
 

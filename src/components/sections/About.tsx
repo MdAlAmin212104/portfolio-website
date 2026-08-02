@@ -40,32 +40,6 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
-const TECH_HIGHLIGHTS = [
-  {
-    title: "Shopify Architecture",
-    subtitle: "Custom Apps, Liquid & Storefront APIs",
-    icon: ShoppingBag,
-    color: "text-accent",
-  },
-  {
-    title: "Modern Web Stack",
-    subtitle: "Next.js 15, React 19, TypeScript & MERN",
-    icon: Cpu,
-    color: "text-primary",
-  },
-  {
-    title: "Performance & Conversion",
-    subtitle: "95+ Lighthouse Score & Ultra-fast UX",
-    icon: Zap,
-    color: "text-amber-400",
-  },
-  {
-    title: "Global Reach",
-    subtitle: "Remote collaboration with clients worldwide",
-    icon: Globe,
-    color: "text-emerald-400",
-  },
-];
 
 const SERVICES_ABOUT = [
   {
@@ -125,25 +99,6 @@ export function About() {
               <p className="text-muted text-sm sm:text-base leading-relaxed">
                 {PERSONAL_INFO.longBio}
               </p>
-            </div>
-
-            {/* Tech & Performance Feature Badges Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-white/10">
-              {TECH_HIGHLIGHTS.map((highlight) => {
-                const IconComp = highlight.icon;
-                return (
-                  <div
-                    key={highlight.title}
-                    className="glass-dock p-4 rounded-2xl border border-white/10 flex items-start gap-3 hover:border-accent/40 transition-colors"
-                  >
-                    <IconComp className={`w-6 h-6 ${highlight.color} shrink-0 mt-0.5`} />
-                    <div>
-                      <h4 className="text-sm font-bold text-white">{highlight.title}</h4>
-                      <p className="text-xs text-muted leading-tight mt-0.5">{highlight.subtitle}</p>
-                    </div>
-                  </div>
-                );
-              })}
             </div>
           </motion.div>
 
