@@ -64,7 +64,7 @@ export const PERSONAL_INFO = {
   bio: "Building scalable Shopify Apps, high-converting Shopify Themes, and modern eCommerce experiences with Next.js, React, TypeScript, and Shopify's latest technologies.",
 
   longBio:
-    "I am a specialized Shopify App & Fullstack Web Developer with 3+ years of hands-on experience crafting high-impact eCommerce solutions and custom web applications. Having successfully delivered 150+ client projects for global brands and merchants, I excel in developing scalable Shopify Apps, custom Liquid & Hydrogen themes, Theme App Extensions, GraphQL/REST APIs, and headless storefronts. By combining Next.js 15, React 19, TypeScript, and Node.js with Shopify's modern ecosystem, I engineer ultra-fast (95+ Lighthouse), conversion-optimized digital experiences engineered for business growth. I am ready to bring engineering excellence, clean code standards, and rapid execution to remote teams, contract engagements, and full-time engineering roles.",
+    "I am a Shopify App & Theme Developer with 3+ years of experience building custom Shopify Apps, high-performance Shopify themes, and scalable eCommerce solutions. I specialize in embedded Shopify App development using Shopify CLI, Remix, React, Node.js, TypeScript, Polaris, App Bridge, GraphQL, REST APIs, Webhooks, and Theme App Extensions. I also develop custom Shopify themes with Liquid and Online Store 2.0, creating responsive, conversion-focused storefronts featuring custom sections, metafields, product customization, AJAX cart functionality, dynamic filtering, performance optimization, and seamless third-party integrations. Committed to clean, maintainable, and scalable code, I follow Shopify best practices and App Store guidelines to deliver reliable, high-quality Shopify Apps and themes that enhance user experience and help merchants grow their businesses.",
   location: "Dhaka, Bangladesh (UTC+6) • Remote Worldwide",
   availability: "Available for Select Contracts & Full-time Roles",
   email: "mdalamin212104@gmail.com",
@@ -75,7 +75,7 @@ export const PERSONAL_INFO = {
     { label: "Years Experience", value: 3, suffix: "+" },
     { label: "Projects Completed", value: 150, suffix: "+" },
     { label: "Happy Clients", value: 120, suffix: "+" },
-    { label: "Shopify Apps Published", value: 2, suffix: "" },
+    { label: "Shopify Apps Published", value: 1, suffix: "" },
   ],
 };
 
@@ -151,28 +151,39 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 export const EXPERIENCES: ExperienceItem[] = [
   {
     id: "exp-1",
-    role: "Software Engineer",
+    role: "Web Developer",
     company: "SM Technology",
     period: "2024 - Present",
     location: "Dhaka, Bangladesh",
     icon: "briefcase",
-    description: "Led development of enterprise-scale applications and architected scalable microservices architecture.",
+    description: "Developed custom Shopify stores, customized themes, implemented custom features, integrated third-party apps, and optimized store performance.",
     achievements: [
-      "Led development of enterprise-scale applications and high-traffic web portals.",
-      "Architected scalable microservices architecture and headless e-commerce solutions.",
-      "Mentored junior developers and conducted thorough, high-standard code reviews.",
+      "Developed custom Shopify stores with responsive, conversion-focused user experiences.",
+      "Customized Shopify Online Store 2.0 themes using Liquid, JavaScript, HTML, and CSS.",
+      "Collaborated with clients to deliver scalable Shopify solutions and ongoing store enhancements.",
     ],
-    techStack: ["Next.js 15", "TypeScript", "Node.js", "Tailwind CSS", "Shopify API"],
+    techStack: [
+      "Shopify",
+      "Liquid",
+      "Shopify CLI",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "GraphQL",
+      "Shopify Admin API",
+      "Shopify Polaris",
+      "Webhooks",
+    ],
     type: "Full-time",
     metrics: [
-      { label: "PROJECTS", value: "12" },
-      { label: "TEAM SIZE", value: "30" },
-      { label: "TECHNOLOGIES", value: "15" },
+      { label: "PROJECTS", value: "150+" },
+      { label: "TEAM SIZE", value: "40+" },
+      { label: "TECHNOLOGIES", value: "10+" },
     ],
   },
   {
     id: "exp-2",
-    role: "Mobile Application Developer",
+    role: "Frontend Web Developer",
     company: "IT-WAY BD",
     period: "2021 - 2023",
     location: "Dhaka, Bangladesh",

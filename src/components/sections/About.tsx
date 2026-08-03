@@ -75,7 +75,7 @@ export function About() {
         <SectionHeader
           badge="About Me"
           title="Creative Engineering Journey"
-          subtitle="Building Web Solutions that Scale & Inspire"
+          subtitle="Shopify Developer | Custom Apps, Themes & Integrations"
         />
 
         {/* Top Story & Statistics Grid */}
@@ -94,7 +94,7 @@ export function About() {
                 <span>Creative Engineering Journey</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-bold text-white leading-snug">
-                Building Web Solutions that Scale & Inspire
+                Shopify Developer | Custom Apps, Themes & Integrations
               </h3>
               <p className="text-muted text-sm sm:text-base leading-relaxed">
                 {PERSONAL_INFO.longBio}
