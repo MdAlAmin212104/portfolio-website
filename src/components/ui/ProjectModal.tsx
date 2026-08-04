@@ -105,15 +105,16 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                4. NO display:flex  → block container so children stack normally
           ── */}
           <div
-            ref={scrollBodyRef}
-            className="modal-scroll-body"
-            style={{
-              flex: 1,
-              minHeight: 0,
-              overflowY: "auto",
-              overscrollBehavior: "contain",
-            }}
-          >
+  ref={scrollBodyRef}
+  className="modal-scroll-body"
+  data-lenis-prevent
+  style={{
+    flex: 1,
+    minHeight: 0,
+    overflowY: "auto",
+    overscrollBehavior: "contain",
+  }}
+>
             {/* Inner wrapper for padding — keeps padding from breaking the scroll calculation */}
             <div style={{ padding: "24px 32px", display: "flex", flexDirection: "column", gap: "20px" }}>
 
