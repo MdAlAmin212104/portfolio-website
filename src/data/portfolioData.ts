@@ -20,7 +20,6 @@ export interface SkillCategory {
   title: string;
   skills: {
     name: string;
-    level: number; // 0 - 100
     icon: string; // icon identifier or label
     highlight?: string;
   }[];
@@ -112,38 +111,70 @@ export const SERVICES: ServiceItem[] = [
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: "Frontend Core",
+    title: "Shopify Ecosystem",
     skills: [
-      { name: "React 19 / Next.js 15", level: 96, icon: "React", highlight: "Expert" },
-      { name: "TypeScript", level: 94, icon: "TypeScript", highlight: "Expert" },
-      { name: "Tailwind CSS & Design Tokens", level: 98, icon: "Tailwind", highlight: "Master" },
-      { name: "HTML5 / CSS3 / SASS", level: 96, icon: "HTML5" },
+      { name: "Liquid", highlight: "Theme Core", icon: "code" },
+      { name: "Online Store 2.0", highlight: "Architecture", icon: "layers" },
+      { name: "Shopify CLI", highlight: "Dev Tool", icon: "terminal" },
+      { name: "Remix", highlight: "App Framework", icon: "zap" },
+      { name: "App Bridge", highlight: "Embedded App", icon: "box" },
+      { name: "Polaris Web Components", highlight: "UI Library", icon: "layout" },
+      { name: "GraphQL Admin API", highlight: "API", icon: "database" },
+      { name: "Theme App Extensions", highlight: "Extension", icon: "blocks" },
+      { name: "App Blocks", highlight: "Storefront UI", icon: "grid" },
+      { name: "Metafields", highlight: "Custom Data", icon: "file-code" },
+      { name: "Shopify Functions", highlight: "Backend Logic", icon: "cpu" },
+      { name: "Billing API", highlight: "Monetization", icon: "key" },
+      { name: "Theme Dev", highlight: "Custom Themes", icon: "code" },
+      { name: "React Router", highlight: "Navigation", icon: "globe" },
+      { name: "HTML", highlight: "Structure", icon: "file-code" },
+      { name: "CSS", highlight: "Styling", icon: "sparkles" },
+      { name: "Schema", highlight: "Custom Settings", icon: "settings" },
+      { name: "Sections", highlight: "Dynamic UI", icon: "layers" },
+      { name: "Blocks", highlight: "Modular Units", icon: "blocks" },
+      { name: "Snippets", highlight: "Reusable Code", icon: "braces" },
     ],
   },
   {
-    title: "Animations & 3D",
+    title: "Client Side",
     skills: [
-      { name: "Framer Motion", level: 95, icon: "Framer", highlight: "Expert" },
-      { name: "GSAP & ScrollTrigger", level: 92, icon: "GSAP", highlight: "Advanced" },
-      { name: "Three.js / React Three Fiber", level: 85, icon: "ThreeJS", highlight: "Advanced" },
-      { name: "Lenis Smooth Scroll", level: 95, icon: "Lenis" },
+      { name: "JavaScript", highlight: "ES6+", icon: "code" },
+      { name: "TypeScript", highlight: "Type Safe", icon: "shield" },
+      { name: "React.js", highlight: "Frontend Core", icon: "zap" },
+      { name: "Next.js", highlight: "Fullstack Framework", icon: "globe" },
+      { name: "Redux.js", highlight: "State Management", icon: "layers" },
+      { name: "Tailwind CSS", highlight: "Styling", icon: "sparkles" },
+      { name: "Bootstrap CSS", highlight: "UI Framework", icon: "layout" },
+      { name: "Material UI", highlight: "Component Library", icon: "grid" },
+      { name: "Firebase", highlight: "BaaS & Auth", icon: "key" },
+      { name: "Stripe", highlight: "Payment Gateway", icon: "dollar" },
     ],
   },
   {
-    title: "E-Commerce & CMS",
+    title: "Server Side",
     skills: [
-      { name: "Shopify Theme Dev & Liquid", level: 94, icon: "Shopify", highlight: "Expert" },
-      { name: "Headless Storefront API", level: 90, icon: "GraphQL" },
-      { name: "Sanity.io / Strapi", level: 88, icon: "CMS" },
+      { name: "Node.js", highlight: "Runtime Environment", icon: "cpu" },
+      { name: "Express", highlight: "Backend Framework", icon: "server" },
+      { name: "MongoDB", highlight: "NoSQL Database", icon: "database" },
+      { name: "PostgreSQL", highlight: "Relational DB", icon: "database" },
+      { name: "Prisma", highlight: "ORM", icon: "layers" },
+      { name: "JWT", highlight: "Authentication", icon: "shield" },
     ],
   },
   {
-    title: "Tools & DevOps",
+    title: "Tools & Platforms",
     skills: [
-      { name: "Git / GitHub Workflows", level: 95, icon: "Git" },
-      { name: "Vercel / Netlify Deployments", level: 94, icon: "Vercel" },
-      { name: "Webpack / Vite / Turbopack", level: 88, icon: "Vite" },
-      { name: "Lighthouse & Web Vitals", level: 96, icon: "Speed" },
+      { name: "Git", highlight: "Version Control", icon: "git" },
+      { name: "GitHub", highlight: "Code Hosting", icon: "github" },
+      { name: "Git Bash", highlight: "Command Line", icon: "terminal" },
+      { name: "npm", highlight: "Package Manager", icon: "box" },
+      { name: "Yarn", highlight: "Package Manager", icon: "box" },
+      { name: "Chrome DevTools", highlight: "Debugging", icon: "wrench" },
+      { name: "VS Code", highlight: "IDE", icon: "code" },
+      { name: "Vercel", highlight: "Deployment", icon: "globe" },
+      { name: "Netlify", highlight: "Deployment", icon: "globe" },
+      { name: "Firebase Hosting", highlight: "Hosting", icon: "cloud" },
+      { name: "Render", highlight: "Cloud Host", icon: "server" },
     ],
   },
 ];
