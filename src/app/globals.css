@@ -89,7 +89,6 @@ html.lenis body {
 .glass-input {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
   color: #ffffff;
   transition: all 0.3s ease;
 }
