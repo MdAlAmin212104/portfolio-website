@@ -35,8 +35,8 @@ export interface ExperienceItem {
   description: string;
   achievements: string[];
   techStack: string[];
-  type: "Full-time" | "Contract" | "Freelance";
-  icon?: "briefcase" | "laptop" | "code" | "smartphone";
+  type: "Full-time" | "Contract" | "Freelance" | "Internship" | "Learning" | "Government Certification" | "Professional Training";
+  icon?: "briefcase" | "laptop" | "code" | "smartphone" | "graduation-cap" | "graduation-cap";
   metrics?: { label: string; value: string }[];
 }
 
@@ -153,8 +153,8 @@ export const EXPERIENCES: ExperienceItem[] = [
     id: "exp-1",
     role: "Web Developer",
     company: "SM Technology",
-    period: "2024 - Present",
-    location: "Dhaka, Bangladesh",
+    period: "Sep 2024 - Aug 2026",
+    location: "Banasree, Dhaka, Bangladesh",
     icon: "briefcase",
     description: "Developed custom Shopify stores, customized themes, implemented custom features, integrated third-party apps, and optimized store performance.",
     achievements: [
@@ -182,88 +182,103 @@ export const EXPERIENCES: ExperienceItem[] = [
     ],
   },
   {
-    id: "exp-2",
-    role: "Frontend Web Developer",
-    company: "IT-WAY BD",
-    period: "2021 - 2023",
-    location: "Dhaka, Bangladesh",
-    icon: "laptop",
-    description: "Developed and maintained mobile applications, implemented RESTful APIs, and optimized database queries.",
-    achievements: [
-      "Developed and maintained high-performance mobile applications.",
-      "Implemented RESTful APIs and database performance optimization.",
-      "Collaborated effectively with cross-functional product & engineering teams.",
-    ],
-    techStack: ["React Native", "Flutter", "REST APIs", "Node.js", "Redux"],
-    type: "Full-time",
-    metrics: [
-      { label: "PROJECTS", value: "10" },
-      { label: "TEAM SIZE", value: "15" },
-      { label: "TECHNOLOGIES", value: "5" },
-    ],
-  },
+  id: "exp-2",
+  role: "Frontend Web Developer",
+  company: "European IT Ltd",
+  period: "Jun 2024 - Sep 2024",
+  location: "Mirpur-10, Dhaka, Bangladesh",
+  icon: "laptop",
+  description: "Built responsive and user-friendly web interfaces, converted UI/UX designs into reusable React components, integrated REST APIs, optimized website performance, and collaborated with the development team to deliver modern web applications.",
+  achievements: [
+    "Developed responsive web pages and reusable React components from Figma designs.",
+    "Integrated REST APIs and implemented dynamic data rendering with React.",
+    "Improved website performance, responsiveness, and cross-browser compatibility.",
+    "Collaborated with senior developers using Git and Agile development workflows."
+  ],
+  techStack: [
+    "React.js",
+    "JavaScript (ES6+)",
+    "HTML5",
+    "CSS3",
+    "Tailwind CSS",
+    "Bootstrap",
+    "REST APIs",
+    "Git",
+    "GitHub",
+    "Vite"
+  ],
+  type: "Internship",
+  metrics: [
+    { label: "PROJECTS", value: "4" },
+    { label: "TEAM SIZE", value: "15" },
+    { label: "TECHNOLOGIES", value: "7" }
+  ],
+},
   {
-    id: "exp-3",
-    role: "Junior Mobile App Developer",
-    company: "ErutaSoft",
-    period: "2020 - 2021",
-    location: "Dhaka, Bangladesh",
-    icon: "laptop",
-    description: "Developed mobile applications using React Native and integrated third-party REST services.",
-    achievements: [
-      "Developed mobile applications using React Native & JavaScript.",
-      "Collaborated with design team for pixel-perfect UI/UX implementation.",
-      "Integrated REST APIs and third-party cloud services.",
-    ],
-    techStack: ["React Native", "JavaScript", "REST APIs", "Git", "Figma"],
-    type: "Full-time",
-    metrics: [
-      { label: "PROJECTS", value: "3" },
-      { label: "TEAM SIZE", value: "5" },
-      { label: "TECHNOLOGIES", value: "3" },
-    ],
-  },
+  id: "exp-3",
+  role: "Web Design & Development Trainee",
+  company: "National Skills Development Authority (NSDA), Level-3",
+  period: "April 2024 - June 2024",
+  location: "Dhaka, Bangladesh",
+  icon: "graduation-cap",
+  description: "Completed a government-certified Level-3 training program in Web Design & Development, gaining practical skills in building responsive websites using modern frontend technologies and industry best practices for freelancing and real-world client projects.",
+  achievements: [
+    "Learned HTML5, CSS3, Bootstrap, and JavaScript fundamentals for modern web development.",
+    "Built responsive and mobile-friendly websites following industry best practices.",
+    "Completed hands-on projects focused on UI implementation and frontend development.",
+    "Strengthened problem-solving, debugging, and version control skills for real-world client work."
+  ],
+  techStack: [
+    "HTML5",
+    "CSS3",
+    "Bootstrap",
+    "JavaScript",
+    "Responsive Design",
+    "Git",
+    "GitHub",
+    "VS Code"
+  ],
+  type: "Government Certification",
+  metrics: [
+    { label: "LEVEL", value: "3" },
+    { label: "DURATION", value: " 3 months" },
+    { label: "PROJECTS", value: "5+" }
+  ],
+},
   {
-    id: "exp-4",
-    role: "Trainer (Part-Time)",
-    company: "E-Learning & Earning LTD",
-    period: "Oct 2019 - Mar 2020",
-    location: "Shyamoli square shopping mall, dhaka",
-    icon: "code",
-    description: "Conducted training sessions on mobile app development, teaching students Flutter and Dart best practices.",
-    achievements: [
-      "Conducted training sessions on mobile app development.",
-      "Taught students Flutter and Dart fundamentals & state management.",
-      "Mentored students in building real-world apps with hands-on learning.",
-    ],
-    techStack: ["Flutter", "Dart", "Firebase", "Mobile UI", "Teaching"],
-    type: "Contract",
-    metrics: [
-      { label: "PROJECTS", value: "0" },
-      { label: "TEAM SIZE", value: "20" },
-      { label: "TECHNOLOGIES", value: "3" },
-    ],
-  },
-  {
-    id: "exp-5",
-    role: "Student, Mobile Application Development",
-    company: "ICT Division",
-    period: "6 Months +",
-    location: "Asad gate, Dhaka",
-    icon: "smartphone",
-    description: "Completed intensive training in mobile app development, mastering Flutter and Dart.",
-    achievements: [
-      "Completed intensive training in mobile app development mastering Flutter and Dart.",
-      "Implemented hands-on projects to reinforce core technical expertise.",
-    ],
-    techStack: ["Flutter", "Dart", "OOP", "Mobile Architecture"],
-    type: "Full-time",
-    metrics: [
-      { label: "PROJECTS", value: "0" },
-      { label: "TEAM SIZE", value: "0" },
-      { label: "TECHNOLOGIES", value: "2" },
-    ],
-  },
+  id: "exp-4",
+  role: "Web Development Trainee",
+  company: "Programming Hero",
+  period: "Dec, 2023 - Jun, 2024",
+  location: "Online (Batch-9)",
+  icon: "code",
+  description: "Completed an intensive Full-Stack Web Development course, gaining hands-on experience in modern frontend and backend technologies while building multiple real-world web applications and responsive websites.",
+  achievements: [
+    "Learned HTML5, CSS3, JavaScript, React.js, Next.js, Express.js, and MongoDB.",
+    "Built multiple responsive full-stack web applications through hands-on projects.",
+    "Developed REST APIs and implemented CRUD functionality using the MERN stack.",
+    "Strengthened problem-solving, debugging, Git, and deployment skills for real-world development."
+  ],
+  techStack: [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "React.js",
+    "Next.js",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "Tailwind CSS",
+    "Git",
+    "GitHub"
+  ],
+  type: "Professional Training",
+  metrics: [
+    { label: "DURATION", value: "7 Months" },
+    { label: "PROJECTS", value: "15+" },
+    { label: "TECHNOLOGIES", value: "11" }
+  ],
+},
 ];
 
 export const PROJECTS: Project[] = [

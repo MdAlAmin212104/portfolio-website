@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { EXPERIENCES, ExperienceItem } from "@/data/portfolioData";
 import { SectionHeader } from "../ui/SectionHeader";
@@ -122,6 +122,16 @@ export function ExperienceCard({
 {/* MAIN EXPERIENCE SECTION COMPONENT */ }
 export function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const desktopContainerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // State for dynamic SVG path and timeline node coordinates
+  const [pathData, setPathData] = useState<{
+    d: string;
+    nodes: { x: number; y: number }[];
+    svgWidth: number;
+    svgHeight: number;
+  }>({ d: "", nodes: [], svgWidth: 1000, svgHeight: 3200 });
 
   // Single scroll-driven progress controlling line illumination
   const { scrollYProgress } = useScroll({
@@ -136,6 +146,124 @@ export function Experience() {
   });
 
   const pathLength = useTransform(smoothProgress, [0, 1], [0, 1]);
+
+  // Dynamic layout calculator: 50px side spacing from cards & 40px top/bottom gap spacing
+  const updateTimelinePath = useCallback(() => {
+    if (!desktopContainerRef.current) return;
+    const containerRect = desktopContainerRef.current.getBoundingClientRect();
+    if (containerRect.width === 0 || containerRect.height === 0) return;
+
+    const cardRects = EXPERIENCES.map((_, idx) => {
+      const el = cardRefs.current[idx];
+      if (!el) return null;
+      const rect = el.getBoundingClientRect();
+      return {
+        left: rect.left - containerRect.left,
+        right: rect.right - containerRect.left,
+        top: rect.top - containerRect.top,
+        bottom: rect.bottom - containerRect.top,
+        width: rect.width,
+        height: rect.height,
+      };
+    });
+
+    if (cardRects.some((r) => r === null)) return;
+
+    const validRects = cardRects as {
+      left: number;
+      right: number;
+      top: number;
+      bottom: number;
+      width: number;
+      height: number;
+    }[];
+
+    const svgWidth = containerRect.width;
+    const svgHeight = containerRect.height;
+    const r = 24; // Corner radius for rounded turns
+
+    let d = "";
+    const nodes: { x: number; y: number }[] = [];
+
+    for (let i = 0; i < validRects.length; i++) {
+      const isEven = i % 2 === 0;
+      const currentCard = validRects[i];
+      // 50px spacing from card sides (50px right of 1st card, 50px left of 2nd card, etc.)
+      const sideX = isEven ? currentCard.right + 100 : currentCard.left - 100;
+
+      if (i === 0) {
+        // Start 40px above first card
+        const startY = Math.max(10, currentCard.top - 40);
+        d = `M ${sideX} ${startY}`;
+        nodes.push({ x: sideX, y: startY });
+      }
+
+      if (i < validRects.length - 1) {
+        const nextCard = validRects[i + 1];
+        const nextSideX = (i + 1) % 2 === 0 ? nextCard.right + 100 : nextCard.left - 100;
+
+        // Gap midpoint between bottom of current card and top of next card
+        const gapMid = (currentCard.bottom + nextCard.top) / 2;
+        const yCross = Math.max(
+          currentCard.bottom + 40,
+          Math.min(nextCard.top - 40, gapMid)
+        );
+
+        if (isEven) {
+          // Card 1 (Even, Left): Down right side (+50px), turn left to card 2 left side (-50px)
+          d += ` L ${sideX} ${yCross - r}`;
+          d += ` Q ${sideX} ${yCross} ${sideX - r} ${yCross}`;
+          d += ` L ${nextSideX + r} ${yCross}`;
+          d += ` Q ${nextSideX} ${yCross} ${nextSideX} ${yCross + r}`;
+          nodes.push({ x: sideX, y: yCross });
+        } else {
+          // Card 2 (Odd, Right): Down left side (-50px), turn right to card 3 right side (+50px)
+          d += ` L ${sideX} ${yCross - r}`;
+          d += ` Q ${sideX} ${yCross} ${sideX + r} ${yCross}`;
+          d += ` L ${nextSideX - r} ${yCross}`;
+          d += ` Q ${nextSideX} ${yCross} ${nextSideX} ${yCross + r}`;
+          nodes.push({ x: sideX, y: yCross });
+        }
+      } else {
+        // Last card: extends line 40px below card bottom
+        const endY = currentCard.bottom + 40;
+        d += ` L ${sideX} ${endY}`;
+        nodes.push({ x: sideX, y: endY });
+      }
+    }
+
+    setPathData({ d, nodes, svgWidth, svgHeight });
+  }, []);
+
+  useEffect(() => {
+    updateTimelinePath();
+
+    const observers: ResizeObserver[] = [];
+    if (typeof ResizeObserver !== "undefined") {
+      const mainObserver = new ResizeObserver(() => {
+        updateTimelinePath();
+      });
+
+      if (desktopContainerRef.current) {
+        mainObserver.observe(desktopContainerRef.current);
+      }
+
+      cardRefs.current.forEach((el) => {
+        if (el) mainObserver.observe(el);
+      });
+
+      observers.push(mainObserver);
+    }
+
+    window.addEventListener("resize", updateTimelinePath);
+    const timer = setTimeout(updateTimelinePath, 200);
+
+    return () => {
+      observers.forEach((obs) => obs.disconnect());
+      window.removeEventListener("resize", updateTimelinePath);
+      clearTimeout(timer);
+    };
+  }, [updateTimelinePath]);
 
   const getIcon = (iconType?: string) => {
     switch (iconType) {
@@ -166,15 +294,15 @@ export function Experience() {
         <SectionHeader
           badge="Work History"
           title="Professional Journey"
-          subtitle="Engineering performant mobile applications, enterprise software architectures, and scalable digital solutions."
+          subtitle="Developing custom Shopify apps, high-converting Shopify themes, and scalable eCommerce solutions."
         />
 
-        {/* DESKTOP 75% WIDTH CARDS & UNIFORM 75px SPACED SERPENTINE TIMELINE */}
-        <div className="hidden md:block relative mt-24 pb-20">
+        {/* DESKTOP CARDS & DYNAMIC CARDS-BASED SERPENTINE TIMELINE */}
+        <div ref={desktopContainerRef} className="hidden md:block relative mt-24 pb-20">
           {/* DYNAMIC SVG SERPENTINE CIRCUIT PATH (Layered BEHIND cards at z-0) */}
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0"
-            viewBox="0 0 1000 3200"
+            viewBox={`0 0 ${pathData.svgWidth || 1000} ${pathData.svgHeight || 3200}`}
           >
             <defs>
               <filter id="siteNeonGlow" x="-30%" y="-30%" width="160%" height="160%">
@@ -195,40 +323,50 @@ export function Experience() {
               </linearGradient>
             </defs>
 
-            {/* Background Trace Guide Line (Strictly uniform 75px side, top & bottom gaps outside card boxes) */}
-            <path
-              d="M 825 40 L 825 575 Q 825 595 805 595 L 195 595 Q 175 595 175 615 L 175 1205 Q 175 1225 195 1225 L 805 1225 Q 825 1225 825 1245 L 825 1835 Q 825 1855 805 1855 L 195 1855 Q 175 1855 175 1875 L 175 2465 Q 175 2485 195 2485 L 805 2485 Q 825 2485 825 2505 L 825 3050"
-              fill="none"
-              stroke="rgba(255, 255, 255, 0.14)"
-              strokeWidth="4.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            {/* Background Trace Guide Line */}
+            {pathData.d && (
+              <path
+                d={pathData.d}
+                fill="none"
+                stroke="rgba(255, 255, 255, 0.14)"
+                strokeWidth="4.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            )}
 
             {/* Foreground Scroll-Animated Glowing Line */}
-            <motion.path
-              d="M 825 40 L 825 575 Q 825 595 805 595 L 195 595 Q 175 595 175 615 L 175 1205 Q 175 1225 195 1225 L 805 1225 Q 825 1225 825 1245 L 825 1835 Q 825 1855 805 1855 L 195 1855 Q 175 1855 175 1875 L 175 2465 Q 175 2485 195 2485 L 805 2485 Q 825 2485 825 2505 L 825 3050"
-              fill="none"
-              stroke="url(#siteLineGradient)"
-              strokeWidth="4.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              filter="url(#siteNeonGlow)"
-              style={{ pathLength }}
-            />
+            {pathData.d && (
+              <motion.path
+                d={pathData.d}
+                fill="none"
+                stroke="url(#siteLineGradient)"
+                strokeWidth="4.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                filter="url(#siteNeonGlow)"
+                style={{ pathLength }}
+              />
+            )}
           </svg>
 
-          {/* Staggered Experience Cards Layout with 150px Vertical Gaps */}
-          <div className="space-y-[150px] relative z-10">
+          {/* Staggered Experience Cards Layout */}
+          <div className="space-y-[120px] relative z-10">
             {EXPERIENCES.map((exp, idx) => {
               const isEven = idx % 2 === 0;
               return (
                 <div
                   key={exp.id}
-                  className={`flex items-center w-full ${isEven ? "justify-start pr-[75px]" : "justify-end pl-[75px]"
-                    }`}
+                  className={`flex items-center w-full ${
+                    isEven ? "justify-start" : "justify-end"
+                  }`}
                 >
-                  <div className="w-full md:w-[75%] max-w-[750px]">
+                  <div
+                    ref={(el) => {
+                      cardRefs.current[idx] = el;
+                    }}
+                    className="w-full md:w-[75%] max-w-[750px]"
+                  >
                     <ExperienceCard exp={exp} getIcon={getIcon} />
                   </div>
                 </div>
@@ -236,31 +374,7 @@ export function Experience() {
             })}
           </div>
 
-          {/* Glowing Junction Turn Nodes - ONLY PLACED ON OPEN LINE TURNS OUTSIDE CARDS */}
-          {/* Node 1: Top Start Beam (X=825, Y=40) */}
-          <div className="absolute top-[40px] left-[825px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20">
-            <TimelineNode />
-          </div>
-
-          {/* Node 2: Turn Under Card 1 in Open Gap (X=175px, Y=595px) */}
-          <div className="absolute top-[595px] left-[175px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20">
-            <TimelineNode />
-          </div>
-
-          {/* Node 3: Turn Under Card 2 in Open Gap (X=825px, Y=1225px) */}
-          <div className="absolute top-[1225px] left-[825px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20">
-            <TimelineNode />
-          </div>
-
-          {/* Node 4: Turn Under Card 3 in Open Gap (X=175px, Y=1855px) */}
-          <div className="absolute top-[1855px] left-[175px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20">
-            <TimelineNode />
-          </div>
-
-          {/* Node 5: Turn Under Card 4 in Open Gap (X=825px, Y=2485px) */}
-          <div className="absolute top-[2485px] left-[825px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20">
-            <TimelineNode />
-          </div>
+          {/* DYNAMIC GLOWING SERPENTINE LINE (BEHIND CARDS) */}
         </div>
 
         {/* MOBILE RESPONSIVE TIMELINE (below md screens) */}
@@ -275,11 +389,6 @@ export function Experience() {
 
           {EXPERIENCES.map((exp) => (
             <div key={exp.id} className="relative pl-6">
-              {/* Mobile Timeline Node Dot */}
-              <div className="absolute -left-[19px] top-6 z-10">
-                <TimelineNode />
-              </div>
-
               <ExperienceCard exp={exp} getIcon={getIcon} />
             </div>
           ))}
@@ -288,3 +397,4 @@ export function Experience() {
     </section>
   );
 }
+
