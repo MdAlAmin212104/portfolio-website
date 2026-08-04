@@ -7,6 +7,7 @@ import { SectionHeader } from "../ui/SectionHeader";
 import { MagneticButton } from "../ui/MagneticButton";
 import { ExternalLink, Sparkles, CheckCircle2 } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
+import { SiShopify } from "react-icons/si";
 
 interface FeaturedProjectsProps {
   onSelectProject: (project: Project) => void;
@@ -143,18 +144,35 @@ function StackedProjectCard({
               </button>
             </MagneticButton>
 
-            <MagneticButton strength={0.25}>
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full glass-dock flex items-center justify-center text-muted hover:text-white transition-colors"
-                aria-label="View Source Code"
-                data-cursor="pointer"
-              >
-                <FaGithub className="w-4 h-4" />
-              </a>
-            </MagneticButton>
+            {project.githubUrl ? (
+              <MagneticButton strength={0.25}>
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full glass-dock flex items-center justify-center text-muted hover:text-white transition-colors"
+                  aria-label="View Source Code"
+                  title="View Source Code"
+                  data-cursor="pointer"
+                >
+                  <FaGithub className="w-4 h-4" />
+                </a>
+              </MagneticButton>
+            ) : project.liveUrl ? (
+              <MagneticButton strength={0.25}>
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full glass-dock flex items-center justify-center text-[#95bf47] hover:scale-110 border border-[#95bf47]/30 hover:border-[#95bf47]/80 bg-[#95bf47]/10 transition-all shadow-[0_0_15px_rgba(149,191,71,0.2)]"
+                  aria-label="View on Shopify App Store"
+                  title="View on Shopify App Store"
+                  data-cursor="pointer"
+                >
+                  <SiShopify className="w-5 h-5 text-[#95bf47]" />
+                </a>
+              </MagneticButton>
+            ) : null}
           </div>
         </div>
       </motion.div>
