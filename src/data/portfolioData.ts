@@ -82,10 +82,9 @@ export const PERSONAL_INFO = {
 
   longBio:
     "I am a Shopify App & Theme Developer with 3+ years of experience building custom Shopify Apps, high-performance Shopify themes, and scalable eCommerce solutions. I specialize in embedded Shopify App development using Shopify CLI, Remix, React, Node.js, TypeScript, Polaris, App Bridge, GraphQL, REST APIs, Webhooks, and Theme App Extensions. I also develop custom Shopify themes with Liquid and Online Store 2.0, creating responsive, conversion-focused storefronts featuring custom sections, metafields, product customization, AJAX cart functionality, dynamic filtering, performance optimization, and seamless third-party integrations. Committed to clean, maintainable, and scalable code, I follow Shopify best practices and App Store guidelines to deliver reliable, high-quality Shopify Apps and themes that enhance user experience and help merchants grow their businesses.",
-  location: "Dhaka, Bangladesh (UTC+6) • Remote Worldwide",
+  location: "Banasree, Dhaka, Bangladesh",
   availability: "Available for Select Contracts & Full-time Roles",
   email: "mdalamin212104@gmail.com",
-  web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY", // Get free key at https://web3forms.com with mdalamin212104@gmail.com
   github: "https://github.com/MdAlAmin212104",
   linkedin: "https://www.linkedin.com/in/al-amin21",
   facebook: "https://www.facebook.com/md.al.amin.716294/",
@@ -141,7 +140,7 @@ export const CERTIFICATION_DATA: CertificationItem[] = [
     type: "Professional Training",
     description: "Completed an intensive 7-month Full-Stack Web Development training course, mastering modern frontend and backend technologies including HTML5, CSS3, JavaScript (ES6+), React.js, Next.js, Node.js, Express.js, and MongoDB.",
     skills: ["React.js", "JavaScript (ES6+)", "Next.js", "Express.js", "MongoDB", "Tailwind CSS", "REST API", "Git & GitHub"],
-    driveUrl: "https://drive.google.com/drive/u/0/mobile/my-drive",
+    driveUrl: "https://drive.google.com/file/d/1nY9_yoE88IJuKJXZI33dPgqFn1h_2Jn2/view",
   },
   {
     id: "cert-2",
@@ -152,7 +151,7 @@ export const CERTIFICATION_DATA: CertificationItem[] = [
     credentialId: "NSDA-LEVEL3-WEB-2024",
     description: "Earned government-recognized Level-3 Skill Qualification in Web Design & Development under the Prime Minister's Office NSDA, validating standard competencies in modern web layout design, accessibility, responsiveness, and web standards.",
     skills: ["HTML5 & CSS3", "Bootstrap & Flexbox", "JavaScript", "Responsive UI Design", "Industry Best Practices"],
-    driveUrl: "https://drive.google.com/drive/u/0/mobile/my-drive",
+    driveUrl: "https://drive.google.com/file/d/1uqIIjC-Dfpei1pwsSGM3vwsbLYuPMVwK/view",
   },
   {
     id: "cert-3",
@@ -162,7 +161,7 @@ export const CERTIFICATION_DATA: CertificationItem[] = [
     type: "Professional Training",
     description: "Professional training and hands-on frontend web developer internship, building responsive React web interfaces from Figma prototypes, integrating REST APIs, and implementing optimal component architecture.",
     skills: ["React.js", "Figma to Code", "REST API Integration", "Tailwind CSS", "Bootstrap", "Git Workflow"],
-    driveUrl: "https://drive.google.com/drive/u/0/mobile/my-drive",
+    driveUrl: "https://drive.google.com/file/d/1Q5HC5Kebnoz0bDuvgT5ftt6uEsRBNPl1/view",
   },
 ];
 
