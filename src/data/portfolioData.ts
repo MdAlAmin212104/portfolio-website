@@ -39,12 +39,30 @@ export interface ExperienceItem {
   metrics?: { label: string; value: string }[];
 }
 
-export interface ServiceItem {
+export interface EducationItem {
+  id: string;
+  degree: string;
+  institution: string;
+  period: string;
+  location: string;
+  status: "Running" | "Completed";
+  description: string;
+  highlights: string[];
+  fieldOfStudy: string;
+  type: "University" | "Polytechnic Institute";
+}
+
+export interface CertificationItem {
   id: string;
   title: string;
+  issuer: string;
+  issueDate: string;
+  credentialId?: string;
   description: string;
-  iconName: string;
-  features: string[];
+  skills: string[];
+  driveUrl?: string;
+  verificationUrl?: string;
+  type: "Professional Training" | "Government Certification" | "Industry Course";
 }
 
 export const PERSONAL_INFO = {
@@ -67,6 +85,7 @@ export const PERSONAL_INFO = {
   location: "Dhaka, Bangladesh (UTC+6) • Remote Worldwide",
   availability: "Available for Select Contracts & Full-time Roles",
   email: "mdalamin212104@gmail.com",
+  web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY", // Get free key at https://web3forms.com with mdalamin212104@gmail.com
   github: "https://github.com/MdAlAmin212104",
   linkedin: "https://www.linkedin.com/in/al-amin21",
   facebook: "https://www.facebook.com/md.al.amin.716294/",
@@ -78,34 +97,72 @@ export const PERSONAL_INFO = {
   ],
 };
 
-export const SERVICES: ServiceItem[] = [
+export const EDUCATION_DATA: EducationItem[] = [
   {
-    id: "frontend-arch",
-    title: "Next.js & Frontend Architecture",
-    description: "Enterprise-grade web applications built with Next.js 15, React 19, and TypeScript designed for 95+ Lighthouse scores and extreme speed.",
-    iconName: "Code2",
-    features: ["Server Components & SSR", "Type-safe State Management", "Clean Architecture", "Modular Design Systems"],
+    id: "edu-1",
+    degree: "B.Sc. in Computer Science & Engineering (CSE)",
+    institution: "Northern University Bangladesh",
+    period: "2025 - Present",
+    location: "Dhaka, Bangladesh",
+    status: "Running",
+    type: "University",
+    fieldOfStudy: "Computer Science & Engineering",
+    description: "Currently pursuing Bachelor of Science degree in Computer Science & Engineering. Building strong academic foundations in computer architecture, data structures, algorithm design, software engineering principles, and modern computing trends.",
+    highlights: [
+      "Enrolled Admission 2025 (Active Undergraduate Student)",
+      "Focus on Advanced Algorithms & Software Architecture",
+      "Object-Oriented System Analysis & Software Engineering",
+    ],
   },
   {
-    id: "creative-dev",
-    title: "Creative Development & 3D",
-    description: "Immersive WebGL interactions, Three.js 3D models, GSAP scroll magic, and custom Framer Motion animations that capture audience attention.",
-    iconName: "Sparkles",
-    features: ["Interactive 3D Canvas", "GSAP ScrollTrigger Magic", "Custom Shaders & Canvas", "Lenis Smooth Scroll"],
+    id: "edu-2",
+    degree: "Diploma in Computer Technology & Engineering",
+    institution: "Kurigram Polytechnic Institute",
+    period: "2020 - 2024",
+    location: "Kurigram, Bangladesh",
+    status: "Completed",
+    type: "Polytechnic Institute",
+    fieldOfStudy: "Computer Engineering & Information Technology",
+    description: "Successfully completed 4-year Diploma in Computer Technology & Engineering, mastering practical web technologies, software development, database management systems, and core computer architecture.",
+    highlights: [
+      "Completed 4-Year Diploma in Computer Technology",
+      "Practical Hands-on Software & Frontend Web Labs",
+      "Database Management Systems & Networking Foundations",
+    ],
+  },
+];
+
+export const CERTIFICATION_DATA: CertificationItem[] = [
+  {
+    id: "cert-1",
+    title: "Complete Web Development (Level-1, Batch 9)",
+    issuer: "Programming Hero",
+    issueDate: "2024",
+    type: "Professional Training",
+    description: "Completed an intensive 7-month Full-Stack Web Development training course, mastering modern frontend and backend technologies including HTML5, CSS3, JavaScript (ES6+), React.js, Next.js, Node.js, Express.js, and MongoDB.",
+    skills: ["React.js", "JavaScript (ES6+)", "Next.js", "Express.js", "MongoDB", "Tailwind CSS", "REST API", "Git & GitHub"],
+    driveUrl: "https://drive.google.com/drive/u/0/mobile/my-drive",
   },
   {
-    id: "ecommerce-shopify",
-    title: "Headless E-Commerce & Shopify",
-    description: "High-converting online storefronts using Shopify Liquid, Storefront API, and headless architecture tailored for rapid scaling.",
-    iconName: "ShoppingBag",
-    features: ["Headless Next.js Commerce", "Custom Shopify Themes", "High Speed Optimization", "Custom Checkout Flows"],
+    id: "cert-2",
+    title: "National Skill Certificate in Web Design & Development (Level-3)",
+    issuer: "National Skills Development Authority (NSDA)",
+    issueDate: "2024",
+    type: "Government Certification",
+    credentialId: "NSDA-LEVEL3-WEB-2024",
+    description: "Earned government-recognized Level-3 Skill Qualification in Web Design & Development under the Prime Minister's Office NSDA, validating standard competencies in modern web layout design, accessibility, responsiveness, and web standards.",
+    skills: ["HTML5 & CSS3", "Bootstrap & Flexbox", "JavaScript", "Responsive UI Design", "Industry Best Practices"],
+    driveUrl: "https://drive.google.com/drive/u/0/mobile/my-drive",
   },
   {
-    id: "uiux-design",
-    title: "UI/UX & Design Systems",
-    description: "Designing intuitive, accessible glassmorphic interfaces and cohesive component design systems with dark-mode tailored elegance.",
-    iconName: "Palette",
-    features: ["Tailwind Token Systems", "Dark Mode First Aesthetics", "Figma to Code Fidelity", "ARIA & Accessibility"],
+    id: "cert-3",
+    title: "Frontend Web Development Training & Internship",
+    issuer: "European IT Ltd",
+    issueDate: "2024",
+    type: "Professional Training",
+    description: "Professional training and hands-on frontend web developer internship, building responsive React web interfaces from Figma prototypes, integrating REST APIs, and implementing optimal component architecture.",
+    skills: ["React.js", "Figma to Code", "REST API Integration", "Tailwind CSS", "Bootstrap", "Git Workflow"],
+    driveUrl: "https://drive.google.com/drive/u/0/mobile/my-drive",
   },
 ];
 

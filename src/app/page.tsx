@@ -11,7 +11,7 @@ import { Experience } from "@/components/sections/Experience";
 import { Skills } from "@/components/sections/Skills";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { AllProjects } from "@/components/sections/AllProjects";
-import { Services } from "@/components/sections/Services";
+import { EducationCertifications } from "@/components/sections/EducationCertifications";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 import { ProjectModal } from "@/components/ui/ProjectModal";
@@ -36,7 +36,7 @@ export default function Home() {
           <Skills />
           <FeaturedProjects onSelectProject={(p) => setSelectedProject(p)} />
           <AllProjects onSelectProject={(p) => setSelectedProject(p)} />
-          <Services />
+          <EducationCertifications />
           <Contact />
         </main>
         <Footer />
