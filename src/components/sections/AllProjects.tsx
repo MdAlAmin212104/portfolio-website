@@ -16,7 +16,7 @@ interface AllProjectsProps {
   onSelectProject: (project: Project) => void;
 }
 
-const CATEGORIES = ["All", "Shopify App", "E-commerce", "Full Stack", "Front End"];
+const CATEGORIES = ["All", "Shopify App", "E-commerce", "Full Stack"];
 const PAGE_SIZE = 6;
 
 export function AllProjects({ onSelectProject }: AllProjectsProps) {

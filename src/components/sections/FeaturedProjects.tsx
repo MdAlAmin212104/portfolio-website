@@ -181,7 +181,15 @@ function StackedProjectCard({
 }
 
 export function FeaturedProjects({ onSelectProject }: FeaturedProjectsProps) {
-  const featuredProjects = PROJECTS.filter((p) => p.featured);
+  const featuredProjects = (() => {
+    const featured = PROJECTS.filter((p) => p.featured);
+    const groups: Record<string, typeof featured> = {};
+    for (const p of featured) {
+      if (!groups[p.category]) groups[p.category] = [];
+      if (groups[p.category].length < 3) groups[p.category].push(p);
+    }
+    return Object.values(groups).flat();
+  })();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({

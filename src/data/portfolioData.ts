@@ -4,7 +4,7 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  category: "Full Stack" | "Shopify Store" | "Shopify App" | "Front End" | "E-commerce";
+  category: "Full Stack" | "Shopify Store" | "Shopify App" | "E-commerce";
   image: string;
   description: string;
   fullDescription: string;
@@ -894,6 +894,104 @@ export const PROJECTS: Project[] = [
       "Bold adventure-driven Shopify theme with dynamic product collections for outdoor gear",
       "Size and fit guides with performance-focused product storytelling and specifications",
       "Mobile-first shopping experience optimized for outdoor enthusiasts and adventure seekers",
+    ],
+  },
+
+  // ── Full Stack Projects ───────────────────────────────────────────────────
+
+  {
+    id: "invoice-pdf-generator",
+    title: "Invoice PDF Generator",
+    subtitle: "Dynamic Client Invoice Builder with Instant PDF Export",
+    category: "Full Stack",
+    image: "https://image.thum.io/get/width/1280/crop/630/https://create-invoicepdf.netlify.app/",
+    description: "A powerful invoice generation web app that allows users to fill in client, service, and pricing details through an intuitive form interface and instantly generate a professionally formatted, downloadable PDF invoice.",
+    fullDescription: "The Invoice PDF Generator is a fully client-side full-stack web application built with React.js and modern JavaScript. Users can input client details, itemized services, tax rates, and custom notes through a dynamic form interface. Upon submission, the app generates a pixel-perfect, professional invoice in PDF format—ready for immediate download and delivery. The app features real-time calculation of subtotals, tax, and grand totals, ensuring accuracy at every step. Built with a clean, minimal UI, it's designed for freelancers and small businesses who need fast, reliable invoice creation without any backend complexity.",
+    techStack: ["React.js", "JavaScript", "HTML5", "CSS3", "jsPDF", "Netlify"],
+    githubUrl: "",
+    liveUrl: "https://create-invoicepdf.netlify.app/",
+    featured: true,
+    metrics: "Live Full Stack App",
+    highlights: [
+      "Dynamic multi-field invoice form with real-time subtotal, tax & grand total calculations",
+      "One-click professionally formatted PDF generation and instant browser download",
+      "Clean, minimal UI optimized for freelancers and small businesses to create invoices fast",
+    ],
+  },
+  {
+    id: "spicy-king-restaurant",
+    title: "Spicy King",
+    subtitle: "Full Stack Restaurant Management System with Firebase Auth & Admin Panel",
+    category: "Full Stack",
+    image: "https://image.thum.io/get/width/1280/crop/630/https://spicyking-4c20c.web.app/",
+    description: "A full-featured restaurant management web app with Firebase authentication, an admin panel for managing menu items (Create, Read, Update, Delete), and a live menu display system for customers visiting the site.",
+    fullDescription: "Spicy King is a complete full-stack restaurant management system built using the MERN stack (MongoDB, Express.js, React.js, Node.js) with Firebase Authentication for secure user login. The platform features a dual-role system: visitors can browse the live menu with rich item details, while admins log in to manage the entire menu catalog from a protected dashboard. Admins can add new dishes, update existing items with pricing and descriptions, and delete discontinued products—all changes reflect instantly on the live storefront. Firebase is used for both authentication and real-time updates, ensuring the customer-facing menu is always current. This project demonstrates end-to-end CRUD operations, role-based access control, and seamless frontend-backend integration.",
+    techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "Firebase Auth", "JavaScript", "Tailwind CSS", "Firebase Hosting"],
+    githubUrl: "",
+    liveUrl: "https://spicyking-4c20c.web.app/",
+    featured: true,
+    metrics: "Live Full Stack App",
+    highlights: [
+      "Role-based access: admin panel with full CRUD menu management, live storefront for visitors",
+      "Firebase Authentication with secure login and protected admin dashboard routes",
+      "Real-time menu updates — admin changes instantly reflected on the customer-facing live site",
+    ],
+  },
+  {
+    id: "survey-app-firebase",
+    title: "Survey Voting App",
+    subtitle: "Role-Based Survey Platform with Admin Controls & Firebase Auth",
+    category: "Full Stack",
+    image: "https://image.thum.io/get/width/1280/crop/630/https://simple-firebase-586eb.web.app/",
+    description: "A full-featured survey management platform where admins can create and manage surveys, authenticated users can vote on them, and everyone can view detailed result breakdowns—all powered by Firebase and role-based access control.",
+    fullDescription: "The Survey Voting App is a full-stack web application built with React.js and Firebase, featuring a comprehensive role-based access control system. Visitors can browse available surveys, but voting requires authentication. Once logged in, users can view their personalized survey list and cast votes. Admin users have elevated privileges to create new surveys, generate unique survey links, and view detailed voting analytics including per-option vote counts and participant breakdowns. Firebase is used for authentication, Firestore for real-time database storage of surveys and votes, and Firebase Hosting for deployment. The app enforces a strict one-vote-per-user rule per survey, ensuring data integrity. Role assignment is managed through Firestore user documents, supporting clean role-based routing and UI rendering.",
+    techStack: ["React.js", "Firebase Auth", "Firestore", "JavaScript", "Tailwind CSS", "Firebase Hosting"],
+    githubUrl: "",
+    liveUrl: "https://simple-firebase-586eb.web.app/",
+    featured: true,
+    metrics: "Live Full Stack App",
+    highlights: [
+      "Admin dashboard to create surveys & generate links; users vote with enforced one-vote rule",
+      "Role-based access control — admin, authenticated user, and guest visitor permission tiers",
+      "Real-time Firestore vote tracking with detailed analytics and result breakdown per survey",
+    ],
+  },
+  {
+    id: "sunset-hotel-booking",
+    title: "Sunset Hotel",
+    subtitle: "Full Stack Hotel Management & Room Booking System",
+    category: "Full Stack",
+    image: "https://image.thum.io/get/width/1280/crop/630/https://sunset-20cd7.web.app/",
+    description: "A complete hotel management and booking web application where admins can manage room listings from a protected dashboard, and visitors can browse available rooms, view detailed room information, and submit booking requests.",
+    fullDescription: "Sunset Hotel is a full-stack hotel management system built with React.js, Node.js, Express.js, MongoDB, and Firebase Authentication. The platform features two distinct user flows: admins log in to a protected dashboard where they can add, update, and manage hotel room details including pricing, amenities, availability, and images—all instantly reflected on the public-facing site. Visitors can browse the live room listings, click 'View Details' to explore full room information, and submit booking requests. The system features a clean, modern hotel-themed UI with responsive design, real-time data updates via the backend API, and Firebase-powered authentication to secure the admin panel. This project showcases complete full-stack CRUD functionality with a polished hospitality-focused user experience.",
+    techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "Firebase Auth", "JavaScript", "Tailwind CSS", "Firebase Hosting"],
+    githubUrl: "",
+    liveUrl: "https://sunset-20cd7.web.app/",
+    featured: true,
+    metrics: "Live Full Stack App",
+    highlights: [
+      "Admin dashboard to add and manage hotel rooms — changes instantly visible on live site",
+      "Guest-facing room listings with detailed view and booking request functionality",
+      "Firebase Auth-secured admin panel with full CRUD room management via REST API",
+    ],
+  },
+  {
+    id: "journey-live-api",
+    title: "Journey Live",
+    subtitle: "API-Driven Travel & Destination Explorer with CRUD & Firebase Auth",
+    category: "Full Stack",
+    image: "https://image.thum.io/get/width/1280/crop/630/https://journeylive.web.app/",
+    description: "A dynamic travel and destination exploration platform powered by live API data, featuring full CRUD operations for managing travel entries, rich destination details, and Firebase-based user authentication with login functionality.",
+    fullDescription: "Journey Live is a full-stack travel exploration web application built with React.js and Firebase that fetches and displays live destination data from an external API. The platform offers complete CRUD functionality—users can add new travel destinations, update existing entries with additional information (notes, tips, images), and delete records. Each destination features a richly detailed view with key travel information. Firebase Authentication powers the login system, enabling personalized experiences where authenticated users access their saved journey data. The app integrates smooth UI animations, responsive design, and a robust state management system to deliver a seamless travel discovery experience. This project demonstrates API consumption, real-time data management, and full-stack integration with a Firebase backend.",
+    techStack: ["React.js", "Firebase Auth", "Firestore", "REST API", "JavaScript", "Tailwind CSS", "Firebase Hosting"],
+    githubUrl: "",
+    liveUrl: "https://journeylive.web.app/",
+    featured: true,
+    metrics: "Live Full Stack App",
+    highlights: [
+      "Live API-driven destination data with full Create, Read, Update & Delete functionality",
+      "Firebase Authentication with personalized user journey data and protected routes",
+      "Rich destination detail views with notes, tips, and additional travel info management",
     ],
   },
 ];
