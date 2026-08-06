@@ -1,0 +1,162 @@
+<section class="search-section">
+  <div class="search-tabs">
+    <div class="search-tab active" onclick="ctSwitchSearch('vehicle')">🚗 By Vehicle</div>
+    <div class="search-tab" onclick="ctSwitchSearch('keyword')">🔍 By Keyword</div>
+  </div>
+  <div id="vehicle-search" class="search-panel">
+    <h3>🔍 Tires for Your Vehicle</h3>
+    <p class="search-subtitle">Knowing your specific vehicle gives us the best opportunity to outfit you with tires that are guaranteed to fit.</p>
+    <div class="search-container">
+      <div class="ymm-grid">
+        <div class="ymm-field">
+          <span class="ymm-number">1</span>
+          <select class="ymm-select"><option>Select Year</option><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option></select>
+        </div>
+        <div class="ymm-field">
+          <span class="ymm-number">2</span>
+          <select class="ymm-select"><option>Select Make</option><option>Toyota</option><option>Honda</option><option>Ford</option><option>BMW</option><option>Mercedes-Benz</option><option>Audi</option></select>
+        </div>
+        <div class="ymm-field">
+          <span class="ymm-number">3</span>
+          <select class="ymm-select"><option>Select Model</option><option>Camry</option><option>Corolla</option><option>RAV4</option><option>Hilux</option></select>
+        </div>
+        <div class="ymm-field">
+          <span class="ymm-number">4</span>
+          <select class="ymm-select"><option>Select Trim/Drive</option><option>2WD</option><option>4WD</option><option>AWD</option></select>
+        </div>
+      </div>
+      <div class="ymm-actions">
+        <button class="ymm-search-btn">🔍 Search Tires</button>
+        <span class="ymm-reset">↻ Reset</span>
+      </div>
+    </div>
+  </div>
+  <div id="keyword-search" class="search-panel" style="display:none;">
+    <h3>🔍 What are you looking for?</h3>
+    <p class="search-subtitle">Search by tire size, SKU, equipment model, or keyword</p>
+    <div class="search-container">
+      <div class="keyword-box">
+        <input type="text" class="keyword-input" placeholder="e.g. LK-23-AB, PCR 205/55R16, Self-Sealing Machine...">
+        <button class="search-btn">Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="popular-tags">
+    <span style="color:#666;font-size:14px;">Or browse by:</span>
+    <a href="/collections/passenger-car-tires" class="tag-link">Passenger Tires</a>
+    <a href="/collections/tire-service-equipment" class="tag-link">Tire Changers</a>
+    <a href="/collections/self-sealing-tire-machines" class="tag-link">Self-Sealing</a>
+    <a href="/pages/wholesale-bulk-order" class="tag-link">Bulk Order</a>
+    <a href="/collections/used-tires" class="tag-link">Used Tires</a>
+  </div>
+</section>
+
+<style>
+.search-section {
+  padding: 60px 40px;
+  background: #F5F5F5;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.search-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 30px;
+}
+.search-tab {
+  padding: 14px 32px;
+  background: white;
+  border: 2px solid #E5E5E5;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s;
+  user-select: none;
+}
+.search-tab:first-child { border-radius: 8px 0 0 8px; border-right: none; }
+.search-tab:last-child { border-radius: 0 8px 8px 0; }
+.search-tab.active { background: #F26522; color: white; border-color: #F26522; }
+.search-section h3 { font-size: 28px; margin-bottom: 8px; color: #1A1A2E; }
+.search-subtitle { font-size: 16px; color: #666; margin-bottom: 30px; }
+.search-container {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.ymm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+.ymm-field { position: relative; }
+.ymm-number {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px; background: #1A1A2E; color: white;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+}
+.ymm-select {
+  width: 100%; padding: 16px 16px 16px 48px;
+  border: 2px solid #E5E5E5; border-radius: 8px;
+  font-size: 15px; background: white; cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+.ymm-select:focus { border-color: #F26522; outline: none; }
+.keyword-box { display: flex; gap: 12px; max-width: 700px; margin: 0 auto; }
+.keyword-input {
+  flex: 1; padding: 16px 24px; border: 2px solid #E5E5E5;
+  border-radius: 8px; font-size: 16px;
+}
+.keyword-input:focus { border-color: #F26522; outline: none; }
+.search-btn {
+  background: #F26522; color: white; padding: 16px 40px;
+  border: none; border-radius: 8px; font-size: 16px;
+  font-weight: 700; cursor: pointer;
+}
+.ymm-actions { display: flex; gap: 20px; align-items: center; justify-content: center; }
+.ymm-search-btn {
+  background: #F26522; color: white; padding: 16px 50px;
+  border: none; border-radius: 8px; font-size: 16px;
+  font-weight: 700; cursor: pointer;
+}
+.ymm-reset { color: #666; font-size: 14px; cursor: pointer; }
+.popular-tags {
+  display: flex; justify-content: center; gap: 12px;
+  flex-wrap: wrap; margin-top: 24px;
+}
+.tag-link {
+  background: white; border: 1px solid #E5E5E5;
+  padding: 8px 18px; border-radius: 20px;
+  font-size: 14px; color: #333; text-decoration: none;
+  transition: all 0.3s;
+}
+.tag-link:hover { background: #F26522; color: white; border-color: #F26522; }
+@media (max-width: 768px) {
+  .nav-menu { display: none; }
+  .ymm-grid { grid-template-columns: 1fr; }
+  .keyword-box { flex-direction: column; }
+  .search-tabs { flex-direction: column; }
+  .search-tab:first-child, .search-tab:last-child { border-radius: 8px; border-right: 2px solid #E5E5E5; }
+}
+</style>
+
+<script>
+function ctSwitchSearch(type) {
+  document.querySelectorAll('.search-tab').forEach(function(t){ t.classList.remove('active'); });
+  if (event && event.target) event.target.classList.add('active');
+  if (type === 'vehicle') {
+    document.getElementById('vehicle-search').style.display = 'block';
+    document.getElementById('keyword-search').style.display = 'none';
+  } else {
+    document.getElementById('vehicle-search').style.display = 'none';
+    document.getElementById('keyword-search').style.display = 'block';
+  }
+}
+</script>
+
+{% schema %}
+{ "name": "CnTire Search", "presets": [{ "name": "CnTire Search" }] }
+{% endschema %}
