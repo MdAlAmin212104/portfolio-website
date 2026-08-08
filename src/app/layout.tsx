@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { PERSONAL_INFO } from "@/data/portfolioData";
@@ -13,37 +13,50 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#060913",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://alamin-dev.vercel.app"),
+  metadataBase: new URL("https://mdalamin.site"),
   title: {
     default: `${PERSONAL_INFO.name} — ${PERSONAL_INFO.role}`,
     template: `%s | ${PERSONAL_INFO.name}`,
   },
   description: PERSONAL_INFO.longBio,
   keywords: [
-    "Senior Frontend Engineer",
-    "Creative Developer",
-    "Next.js 15 Portfolio",
-    "React 19 Developer",
-    "TypeScript Architect",
-    "3D WebGL Developer",
-    "GSAP Motion Developer",
-    "Tailwind CSS Designer",
-    "Awwwards Portfolio",
-    "Headless Shopify Specialist",
+    "Shopify Developer",
+    "Shopify App Developer",
+    "Shopify Theme Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Frontend Engineer",
+    "Liquid Shopify Expert",
+    "Md Al Amin Islam",
+    "Full Stack Web Developer",
+    "Headless E-commerce Developer",
   ],
-  authors: [{ name: PERSONAL_INFO.name, url: "https://alamin-dev.vercel.app" }],
+  authors: [{ name: PERSONAL_INFO.name, url: "https://mdalamin.site" }],
   creator: PERSONAL_INFO.name,
+  publisher: PERSONAL_INFO.name,
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://alamin-dev.vercel.app",
+    url: "https://mdalamin.site",
     title: `${PERSONAL_INFO.name} — ${PERSONAL_INFO.role}`,
     description: PERSONAL_INFO.bio,
     siteName: `${PERSONAL_INFO.name} Portfolio`,
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/cover-profile.webp",
         width: 1200,
         height: 630,
         alt: `${PERSONAL_INFO.name} — ${PERSONAL_INFO.role}`,
@@ -55,7 +68,7 @@ export const metadata: Metadata = {
     title: `${PERSONAL_INFO.name} — ${PERSONAL_INFO.role}`,
     description: PERSONAL_INFO.bio,
     creator: "@alamin_dev",
-    images: ["/og-image.jpg"],
+    images: ["/images/cover-profile.webp"],
   },
   robots: {
     index: true,
@@ -69,7 +82,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://alamin-dev.vercel.app",
+    canonical: "https://mdalamin.site",
   },
 };
 
@@ -80,25 +93,42 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: PERSONAL_INFO.name,
-    jobTitle: PERSONAL_INFO.role,
-    url: "https://alamin-dev.vercel.app",
-    sameAs: [
-      PERSONAL_INFO.github,
-      PERSONAL_INFO.linkedin,
-      PERSONAL_INFO.facebook,
-    ],
-    knowsAbout: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Three.js",
-      "GSAP",
-      "Framer Motion",
-      "Shopify Liquid",
-      "Web Performance Optimization",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://mdalamin.site/#person",
+        name: PERSONAL_INFO.name,
+        jobTitle: PERSONAL_INFO.role,
+        url: "https://mdalamin.site",
+        image: "https://mdalamin.site/images/cover-profile.webp",
+        sameAs: [
+          PERSONAL_INFO.github,
+          PERSONAL_INFO.linkedin,
+          PERSONAL_INFO.facebook,
+        ],
+        knowsAbout: [
+          "Shopify App Development",
+          "Shopify Theme Development",
+          "Liquid",
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "GraphQL Admin API",
+          "Node.js",
+          "Web Performance Optimization",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://mdalamin.site/#website",
+        url: "https://mdalamin.site",
+        name: `${PERSONAL_INFO.name} Portfolio`,
+        description: PERSONAL_INFO.bio,
+        author: {
+          "@id": "https://mdalamin.site/#person",
+        },
+      },
     ],
   };
 

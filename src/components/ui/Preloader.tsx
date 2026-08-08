@@ -8,8 +8,8 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    const duration = 1600; // ms
-    const intervalTime = 20;
+    const duration = 400; // ms (Fast load)
+    const intervalTime = 15;
     const steps = duration / intervalTime;
     const increment = 100 / steps;
 
@@ -21,7 +21,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
           setTimeout(() => {
             setIsDone(true);
             if (onComplete) onComplete();
-          }, 300);
+          }, 50);
           return 100;
         }
         return next;
@@ -39,7 +39,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
           className="fixed inset-0 z-[10000] flex flex-col items-center justify-between bg-[#0B0F19] px-8 py-12 select-none overflow-hidden"
           exit={{
             y: "-100%",
-            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
+            transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] },
           }}
         >
           {/* Top Brand Name */}

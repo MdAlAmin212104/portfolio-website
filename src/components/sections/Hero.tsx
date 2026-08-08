@@ -158,6 +158,10 @@ export function Hero() {
               <img
                 src="/images/Hero-image.png"
                 alt={PERSONAL_INFO.name}
+                width={460}
+                height={540}
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover object-top rounded-2xl filter brightness-105 contrast-105 transform group-hover:scale-105 transition-transform duration-700"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
