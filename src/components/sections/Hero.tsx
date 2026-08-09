@@ -41,7 +41,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-3.5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] break-words max-w-full"
+            className="text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] break-words max-w-full"
           >
             Hi, I'm <br />
             <span className="text-gradient-primary">{PERSONAL_INFO.name}</span>
