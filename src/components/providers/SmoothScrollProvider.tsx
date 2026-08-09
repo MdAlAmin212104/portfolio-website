@@ -1,11 +1,6 @@
 "use client";
 
 import { useEffect, ReactNode } from "react";
-import Lenis from "lenis";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface SmoothScrollProviderProps {
   children: ReactNode;
@@ -13,27 +8,51 @@ interface SmoothScrollProviderProps {
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
-    });
+    let lenisInstance: any = null;
+    let tickerCb: ((time: number) => void) | null = null;
+    let gsapRef: any = null;
 
-    lenis.on("scroll", ScrollTrigger.update);
+    async function initSmoothScroll() {
+      const [LenisModule, gsapModule, ScrollTriggerModule] = await Promise.all([
+        import("lenis"),
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
+      const Lenis = LenisModule.default;
+      const gsap = gsapModule.gsap;
+      const ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+      gsapRef = gsap;
 
-    gsap.ticker.lagSmoothing(0);
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 1.5,
+      });
+
+      lenisInstance = lenis;
+
+      lenis.on("scroll", ScrollTrigger.update);
+
+      tickerCb = (time: number) => {
+        lenis.raf(time * 1000);
+      };
+
+      gsap.ticker.add(tickerCb);
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    initSmoothScroll();
 
     return () => {
-      lenis.destroy();
-      gsap.ticker.remove(lenis.raf);
+      if (lenisInstance) lenisInstance.destroy();
+      if (gsapRef && tickerCb) gsapRef.ticker.remove(tickerCb);
     };
   }, []);
 

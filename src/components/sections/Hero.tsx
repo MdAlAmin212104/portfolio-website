@@ -132,7 +132,7 @@ export function Hero() {
                     aria-label={social.label}
                     data-cursor="pointer"
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-5 h-5" aria-hidden="true" />
                   </a>
                 </MagneticButton>
               ))}
@@ -155,19 +155,18 @@ export function Hero() {
 
             {/* Glassmorphic Image Container */}
             <div className="relative w-full h-full rounded-3xl p-3.5 glass-card shadow-2xl flex flex-col items-center justify-center overflow-hidden border border-white/20 group hover:border-accent/50 transition-all duration-500">
-              <img
-                src="/images/Hero-image.png"
-                alt={PERSONAL_INFO.name}
-                width={460}
-                height={540}
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-full object-cover object-top rounded-2xl filter brightness-105 contrast-105 transform group-hover:scale-105 transition-transform duration-700"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "/images/cover-profile.webp";
-                }}
-              />
+              <picture className="w-full h-full">
+                <source srcSet="/images/Hero-image.webp" type="image/webp" />
+                <img
+                  src="/images/Hero-image.png"
+                  alt={PERSONAL_INFO.name}
+                  width={460}
+                  height={540}
+                  fetchPriority="high"
+                  decoding="async"
+                  className="w-full h-full object-cover object-top rounded-2xl filter brightness-105 contrast-105 transform group-hover:scale-105 transition-transform duration-700"
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19]/80 via-transparent to-transparent pointer-events-none" />
             </div>
 

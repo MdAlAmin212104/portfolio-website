@@ -303,6 +303,7 @@ export function Experience() {
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0"
             viewBox={`0 0 ${pathData.svgWidth || 1000} ${pathData.svgHeight || 3200}`}
+            aria-hidden="true"
           >
             <defs>
               <filter id="siteNeonGlow" x="-30%" y="-30%" width="160%" height="160%">

@@ -220,7 +220,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-white border border-white/15 hover:bg-white/10 transition-colors"
                 >
-                  <FaGithub className="w-4 h-4" />
+                  <FaGithub className="w-4 h-4" aria-hidden="true" />
                   <span>Source Code</span>
                 </a>
               )}

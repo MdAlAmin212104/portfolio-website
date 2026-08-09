@@ -296,7 +296,7 @@ export function EducationCertifications() {
                             className="w-full inline-flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-accent/20 via-primary/20 to-secondary/20 border border-accent/40 hover:border-accent hover:shadow-[0_0_25px_rgba(79,140,255,0.4)] transition-all duration-300 group/btn"
                             data-cursor="pointer"
                           >
-                            <FaGoogleDrive className="w-4 h-4 text-emerald-400 group-hover/btn:scale-110 transition-transform" />
+                            <FaGoogleDrive className="w-4 h-4 text-emerald-400 group-hover/btn:scale-110 transition-transform" aria-hidden="true" />
                             <span>View Certificate (Drive Link)</span>
                             <ArrowUpRight className="w-3.5 h-3.5 text-muted group-hover/btn:text-white group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all" />
                           </a>

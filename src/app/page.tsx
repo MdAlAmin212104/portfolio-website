@@ -1,22 +1,48 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { Preloader } from "@/components/ui/Preloader";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { BackgroundCanvas } from "@/components/ui/BackgroundCanvas";
 import { Navbar } from "@/components/ui/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Experience } from "@/components/sections/Experience";
 import { Skills } from "@/components/sections/Skills";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
-import { AllProjects } from "@/components/sections/AllProjects";
-import { EducationCertifications } from "@/components/sections/EducationCertifications";
-import { Contact } from "@/components/sections/Contact";
-import { Footer } from "@/components/sections/Footer";
-import { ProjectModal } from "@/components/ui/ProjectModal";
 import { Project } from "@/data/portfolioData";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+
+// Dynamically import heavy WebGL background canvas (extracts Three.js out of main bundle)
+const BackgroundCanvas = dynamic(
+  () => import("@/components/ui/BackgroundCanvas").then((m) => m.BackgroundCanvas),
+  { ssr: false }
+);
+
+const CustomCursor = dynamic(
+  () => import("@/components/ui/CustomCursor").then((m) => m.CustomCursor),
+  { ssr: false }
+);
+
+const AllProjects = dynamic(
+  () => import("@/components/sections/AllProjects").then((m) => m.AllProjects)
+);
+
+const EducationCertifications = dynamic(
+  () => import("@/components/sections/EducationCertifications").then((m) => m.EducationCertifications)
+);
+
+const Contact = dynamic(
+  () => import("@/components/sections/Contact").then((m) => m.Contact)
+);
+
+const Footer = dynamic(
+  () => import("@/components/sections/Footer").then((m) => m.Footer)
+);
+
+const ProjectModal = dynamic(
+  () => import("@/components/ui/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);

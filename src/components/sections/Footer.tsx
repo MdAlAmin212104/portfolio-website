@@ -287,7 +287,7 @@ export function Footer() {
                   data-cursor="pointer"
                   className={`w-9 h-9 rounded-xl glass-dock border border-white/10 flex items-center justify-center text-white/50 transition-all duration-300 ${social.color}`}
                 >
-                  <social.icon className="w-4 h-4" />
+                  <social.icon className="w-4 h-4" aria-hidden="true" />
                 </a>
               </MagneticButton>
             ))}

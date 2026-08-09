@@ -31,154 +31,172 @@ export function BackgroundCanvas() {
     setReducedMotion(prefersReduced);
     if (prefersReduced) return;
 
-    const mount = mountRef.current;
-    if (!mount) return;
+    let cleanupFn: (() => void) | null = null;
+    let idleId: number | NodeJS.Timeout;
 
-    let width = mount.clientWidth || window.innerWidth;
-    let height = mount.clientHeight || window.innerHeight;
-
-    // --- 1. THREE.JS SCENE SETUP ---
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x060913, 0.06);
-
-    const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
-    camera.position.set(0, 0, 6);
-
-    const renderer = new THREE.WebGLRenderer({
-      alpha: true,
-      antialias: true,
-      powerPreference: "high-performance",
-    });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    mount.appendChild(renderer.domElement);
-
-    // --- 2. SOFT ELEGANT COLOR PALETTE (Matching Image: Soft Emerald, Cyan, Cobalt, Teal) ---
-    const colorEmerald = new THREE.Color("#10B981");
-    const colorCyan = new THREE.Color("#00D4FF");
-    const colorCobalt = new THREE.Color("#3B82F6");
-    const colorTeal = new THREE.Color("#14B8A6");
-
-    const palette = [colorEmerald, colorCyan, colorCobalt, colorTeal];
-
-    // --- 3. SOFT GLOWING PARTICLES (Low Brightness, Soft Radial Glow) ---
-    const particleCount = window.innerWidth < 768 ? 350 : 1100;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const originalPositions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-    const sizes = new Float32Array(particleCount);
-
-    for (let i = 0; i < particleCount; i++) {
-      const x = (Math.random() - 0.5) * 24;
-      const y = (Math.random() - 0.5) * 18;
-      const z = (Math.random() - 0.5) * 8;
-
-      positions[i * 3] = x;
-      positions[i * 3 + 1] = y;
-      positions[i * 3 + 2] = z;
-
-      originalPositions[i * 3] = x;
-      originalPositions[i * 3 + 1] = y;
-      originalPositions[i * 3 + 2] = z;
-
-      const color = palette[Math.floor(Math.random() * palette.length)];
-      colors[i * 3] = color.r * 0.75; // Soften color intensity
-      colors[i * 3 + 1] = color.g * 0.75;
-      colors[i * 3 + 2] = color.b * 0.75;
-
-      sizes[i] = Math.random() * 0.18 + 0.06;
-    }
-
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-    geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
-
-    const dotTexture = createSoftDotTexture();
-
-    const pointsMaterial = new THREE.PointsMaterial({
-      size: 0.18,
-      map: dotTexture,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.48, // Dim, subtle, non-distracting opacity
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-    });
-
-    const particleSystem = new THREE.Points(geometry, pointsMaterial);
-    scene.add(particleSystem);
-
-    // --- 4. INTERACTIVE MOUSE & SLOW ELEGANT DRIFT LOOP ---
-    const mouseTarget = new THREE.Vector2(0, 0);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseTarget.x = (e.clientX / window.innerWidth - 0.5) * 2;
-      mouseTarget.y = -(e.clientY / window.innerHeight - 0.5) * 2;
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-
-    const handleResize = () => {
+    const initCanvas = () => {
+      const mount = mountRef.current;
       if (!mount) return;
-      width = mount.clientWidth || window.innerWidth;
-      height = mount.clientHeight || window.innerHeight;
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
+
+      let width = mount.clientWidth || window.innerWidth;
+      let height = mount.clientHeight || window.innerHeight;
+
+      // --- 1. THREE.JS SCENE SETUP ---
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x060913, 0.06);
+
+      const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
+      camera.position.set(0, 0, 6);
+
+      const renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: false,
+        powerPreference: "high-performance",
+      });
       renderer.setSize(width, height);
-    };
-    window.addEventListener("resize", handleResize);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      mount.appendChild(renderer.domElement);
 
-    let isTabActive = true;
-    const handleVisibilityChange = () => {
-      isTabActive = !document.hidden;
-    };
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+      // --- 2. SOFT ELEGANT COLOR PALETTE ---
+      const colorEmerald = new THREE.Color("#10B981");
+      const colorCyan = new THREE.Color("#00D4FF");
+      const colorCobalt = new THREE.Color("#3B82F6");
+      const colorTeal = new THREE.Color("#14B8A6");
 
-    const clock = new THREE.Clock();
-    let animationFrameId: number;
+      const palette = [colorEmerald, colorCyan, colorCobalt, colorTeal];
 
-    const animate = () => {
-      if (!isTabActive) {
-        animationFrameId = requestAnimationFrame(animate);
-        return;
-      }
-
-      const elapsedTime = clock.getElapsedTime();
-
-      // Subtle slow wave & drift motion
-      const pos = particleSystem.geometry.attributes.position.array as Float32Array;
-      const orig = originalPositions;
+      // --- 3. OPTIMIZED PARTICLES ---
+      const particleCount = window.innerWidth < 768 ? 180 : 450;
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
+      const originalPositions = new Float32Array(particleCount * 3);
+      const colors = new Float32Array(particleCount * 3);
+      const sizes = new Float32Array(particleCount);
 
       for (let i = 0; i < particleCount; i++) {
-        const i3 = i * 3;
-        const ox = orig[i3];
-        const oy = orig[i3 + 1];
+        const x = (Math.random() - 0.5) * 24;
+        const y = (Math.random() - 0.5) * 18;
+        const z = (Math.random() - 0.5) * 8;
 
-        pos[i3 + 2] = orig[i3 + 2] + Math.sin(ox * 0.4 + elapsedTime * 0.6) * 0.25;
-        pos[i3 + 1] = oy + Math.sin(ox * 0.3 + elapsedTime * 0.4) * 0.15;
+        positions[i * 3] = x;
+        positions[i * 3 + 1] = y;
+        positions[i * 3 + 2] = z;
+
+        originalPositions[i * 3] = x;
+        originalPositions[i * 3 + 1] = y;
+        originalPositions[i * 3 + 2] = z;
+
+        const color = palette[Math.floor(Math.random() * palette.length)];
+        colors[i * 3] = color.r * 0.75;
+        colors[i * 3 + 1] = color.g * 0.75;
+        colors[i * 3 + 2] = color.b * 0.75;
+
+        sizes[i] = Math.random() * 0.22 + 0.08;
       }
-      particleSystem.geometry.attributes.position.needsUpdate = true;
 
-      // Slow 3D Parallax Camera Tilt
-      camera.position.x += (mouseTarget.x * 0.4 - camera.position.x) * 0.03;
-      camera.position.y += (mouseTarget.y * 0.4 - camera.position.y) * 0.03;
-      camera.lookAt(scene.position);
+      geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+      geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
 
-      renderer.render(scene, camera);
-      animationFrameId = requestAnimationFrame(animate);
+      const dotTexture = createSoftDotTexture();
+
+      const pointsMaterial = new THREE.PointsMaterial({
+        size: 0.22,
+        map: dotTexture,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.48,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+
+      const particleSystem = new THREE.Points(geometry, pointsMaterial);
+      scene.add(particleSystem);
+
+      // --- 4. INTERACTIVE MOUSE & SLOW ELEGANT DRIFT LOOP ---
+      const mouseTarget = new THREE.Vector2(0, 0);
+
+      const handleMouseMove = (e: MouseEvent) => {
+        mouseTarget.x = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseTarget.y = -(e.clientY / window.innerHeight - 0.5) * 2;
+      };
+      window.addEventListener("mousemove", handleMouseMove);
+
+      const handleResize = () => {
+        if (!mount) return;
+        width = mount.clientWidth || window.innerWidth;
+        height = mount.clientHeight || window.innerHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      };
+      window.addEventListener("resize", handleResize);
+
+      let isTabActive = true;
+      const handleVisibilityChange = () => {
+        isTabActive = !document.hidden;
+      };
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      const clock = new THREE.Clock();
+      let animationFrameId: number;
+
+      const animate = () => {
+        if (!isTabActive) {
+          animationFrameId = requestAnimationFrame(animate);
+          return;
+        }
+
+        const elapsedTime = clock.getElapsedTime();
+
+        const pos = particleSystem.geometry.attributes.position.array as Float32Array;
+        const orig = originalPositions;
+
+        for (let i = 0; i < particleCount; i++) {
+          const i3 = i * 3;
+          const ox = orig[i3];
+          const oy = orig[i3 + 1];
+
+          pos[i3 + 2] = orig[i3 + 2] + Math.sin(ox * 0.4 + elapsedTime * 0.6) * 0.25;
+          pos[i3 + 1] = oy + Math.sin(ox * 0.3 + elapsedTime * 0.4) * 0.15;
+        }
+        particleSystem.geometry.attributes.position.needsUpdate = true;
+
+        camera.position.x += (mouseTarget.x * 0.4 - camera.position.x) * 0.03;
+        camera.position.y += (mouseTarget.y * 0.4 - camera.position.y) * 0.03;
+        camera.lookAt(scene.position);
+
+        renderer.render(scene, camera);
+        animationFrameId = requestAnimationFrame(animate);
+      };
+
+      animate();
+
+      cleanupFn = () => {
+        window.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("resize", handleResize);
+        document.removeEventListener("visibilitychange", handleVisibilityChange);
+        cancelAnimationFrame(animationFrameId);
+        if (mount && renderer.domElement) {
+          mount.removeChild(renderer.domElement);
+        }
+        renderer.dispose();
+      };
     };
 
-    animate();
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      idleId = (window as any).requestIdleCallback(initCanvas, { timeout: 800 });
+    } else {
+      idleId = setTimeout(initCanvas, 150);
+    }
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", handleResize);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      cancelAnimationFrame(animationFrameId);
-      if (mount && renderer.domElement) {
-        mount.removeChild(renderer.domElement);
+      if (typeof window !== "undefined" && "cancelIdleCallback" in window && typeof idleId === "number") {
+        (window as any).cancelIdleCallback(idleId);
+      } else {
+        clearTimeout(idleId as any);
       }
-      renderer.dispose();
+      if (cleanupFn) cleanupFn();
     };
   }, [reducedMotion]);
 

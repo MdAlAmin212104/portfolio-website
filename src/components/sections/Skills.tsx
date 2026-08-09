@@ -50,15 +50,15 @@ export function Skills() {
   const getCategoryIcon = (categoryTitle: string) => {
     switch (categoryTitle) {
       case "Shopify Ecosystem":
-        return <ShoppingBag className="w-4 h-4 text-[#95bf47]" />;
+        return <ShoppingBag className="w-4 h-4 text-[#95bf47]" aria-hidden="true" />;
       case "Client Side":
-        return <Code2 className="w-4 h-4 text-[#61dafb]" />;
+        return <Code2 className="w-4 h-4 text-[#61dafb]" aria-hidden="true" />;
       case "Server Side":
-        return <Server className="w-4 h-4 text-[#5fa04e]" />;
+        return <Server className="w-4 h-4 text-[#5fa04e]" aria-hidden="true" />;
       case "Tools & Platforms":
-        return <Wrench className="w-4 h-4 text-[#00c7b7]" />;
+        return <Wrench className="w-4 h-4 text-[#00c7b7]" aria-hidden="true" />;
       default:
-        return <Code2 className="w-4 h-4" />;
+        return <Code2 className="w-4 h-4" aria-hidden="true" />;
     }
   };
 
@@ -80,79 +80,79 @@ export function Skills() {
       case "Sections":
       case "Blocks":
       case "Snippets":
-        return <SiShopify className="w-5 h-5 text-[#95bf47]" />;
+        return <SiShopify className="w-5 h-5 text-[#95bf47]" title={skillName} aria-label={skillName} />;
       case "Remix":
-        return <SiRemix className="w-5 h-5 text-[#3992ff]" />;
+        return <SiRemix className="w-5 h-5 text-[#3992ff]" title={skillName} aria-label={skillName} />;
       case "GraphQL Admin API":
-        return <SiGraphql className="w-5 h-5 text-[#e10098]" />;
+        return <SiGraphql className="w-5 h-5 text-[#e10098]" title={skillName} aria-label={skillName} />;
       case "React Router":
-        return <SiReactrouter className="w-5 h-5 text-[#ca4245]" />;
+        return <SiReactrouter className="w-5 h-5 text-[#ca4245]" title={skillName} aria-label={skillName} />;
       case "HTML":
-        return <TbBrandHtml5 className="w-5 h-5 text-[#e34f26]" />;
+        return <TbBrandHtml5 className="w-5 h-5 text-[#e34f26]" title={skillName} aria-label={skillName} />;
       case "CSS":
-        return <TbBrandCss3 className="w-5 h-5 text-[#1572b6]" />;
+        return <TbBrandCss3 className="w-5 h-5 text-[#1572b6]" title={skillName} aria-label={skillName} />;
 
       // Client Side
       case "JavaScript":
-        return <SiJavascript className="w-5 h-5 text-[#f7df1e]" />;
+        return <SiJavascript className="w-5 h-5 text-[#f7df1e]" title={skillName} aria-label={skillName} />;
       case "TypeScript":
-        return <SiTypescript className="w-5 h-5 text-[#3178c6]" />;
+        return <SiTypescript className="w-5 h-5 text-[#3178c6]" title={skillName} aria-label={skillName} />;
       case "React.js":
-        return <SiReact className="w-5 h-5 text-[#61dafb]" />;
+        return <SiReact className="w-5 h-5 text-[#61dafb]" title={skillName} aria-label={skillName} />;
       case "Next.js":
-        return <SiNextdotjs className="w-5 h-5 text-white" />;
+        return <SiNextdotjs className="w-5 h-5 text-white" title={skillName} aria-label={skillName} />;
       case "Redux.js":
-        return <SiRedux className="w-5 h-5 text-[#764abc]" />;
+        return <SiRedux className="w-5 h-5 text-[#764abc]" title={skillName} aria-label={skillName} />;
       case "Tailwind CSS":
-        return <SiTailwindcss className="w-5 h-5 text-[#06b6d4]" />;
+        return <SiTailwindcss className="w-5 h-5 text-[#06b6d4]" title={skillName} aria-label={skillName} />;
       case "Bootstrap CSS":
-        return <SiBootstrap className="w-5 h-5 text-[#7952b3]" />;
+        return <SiBootstrap className="w-5 h-5 text-[#7952b3]" title={skillName} aria-label={skillName} />;
       case "Material UI":
-        return <SiMui className="w-5 h-5 text-[#007fff]" />;
+        return <SiMui className="w-5 h-5 text-[#007fff]" title={skillName} aria-label={skillName} />;
       case "Firebase":
-        return <SiFirebase className="w-5 h-5 text-[#ffca28]" />;
+        return <SiFirebase className="w-5 h-5 text-[#ffca28]" title={skillName} aria-label={skillName} />;
       case "Stripe":
-        return <SiStripe className="w-5 h-5 text-[#635bff]" />;
+        return <SiStripe className="w-5 h-5 text-[#635bff]" title={skillName} aria-label={skillName} />;
 
       // Server Side
       case "Node.js":
-        return <SiNodedotjs className="w-5 h-5 text-[#5fa04e]" />;
+        return <SiNodedotjs className="w-5 h-5 text-[#5fa04e]" title={skillName} aria-label={skillName} />;
       case "Express":
-        return <SiExpress className="w-5 h-5 text-white" />;
+        return <SiExpress className="w-5 h-5 text-white" title={skillName} aria-label={skillName} />;
       case "MongoDB":
-        return <SiMongodb className="w-5 h-5 text-[#47a248]" />;
+        return <SiMongodb className="w-5 h-5 text-[#47a248]" title={skillName} aria-label={skillName} />;
       case "PostgreSQL":
-        return <SiPostgresql className="w-5 h-5 text-[#4169e1]" />;
+        return <SiPostgresql className="w-5 h-5 text-[#4169e1]" title={skillName} aria-label={skillName} />;
       case "Prisma":
-        return <SiPrisma className="w-5 h-5 text-[#5a67d8]" />;
+        return <SiPrisma className="w-5 h-5 text-[#5a67d8]" title={skillName} aria-label={skillName} />;
       case "JWT":
-        return <SiJsonwebtokens className="w-5 h-5 text-[#d63af9]" />;
+        return <SiJsonwebtokens className="w-5 h-5 text-[#d63af9]" title={skillName} aria-label={skillName} />;
 
       // Tools & Platforms
       case "Git":
       case "Git Bash":
-        return <SiGit className="w-5 h-5 text-[#f05032]" />;
+        return <SiGit className="w-5 h-5 text-[#f05032]" title={skillName} aria-label={skillName} />;
       case "GitHub":
-        return <SiGithub className="w-5 h-5 text-white" />;
+        return <SiGithub className="w-5 h-5 text-white" title={skillName} aria-label={skillName} />;
       case "npm":
-        return <SiNpm className="w-5 h-5 text-[#cb3837]" />;
+        return <SiNpm className="w-5 h-5 text-[#cb3837]" title={skillName} aria-label={skillName} />;
       case "Yarn":
-        return <SiYarn className="w-5 h-5 text-[#2c8ebb]" />;
+        return <SiYarn className="w-5 h-5 text-[#2c8ebb]" title={skillName} aria-label={skillName} />;
       case "Chrome DevTools":
-        return <SiGooglechrome className="w-5 h-5 text-[#4285f4]" />;
+        return <SiGooglechrome className="w-5 h-5 text-[#4285f4]" title={skillName} aria-label={skillName} />;
       case "VS Code":
-        return <TbBrandVscode className="w-5 h-5 text-[#007acc]" />;
+        return <TbBrandVscode className="w-5 h-5 text-[#007acc]" title={skillName} aria-label={skillName} />;
       case "Firebase Hosting":
-        return <SiFirebase className="w-5 h-5 text-[#ffca28]" />;
+        return <SiFirebase className="w-5 h-5 text-[#ffca28]" title={skillName} aria-label={skillName} />;
       case "Netlify":
-        return <SiNetlify className="w-5 h-5 text-[#00c7b7]" />;
+        return <SiNetlify className="w-5 h-5 text-[#00c7b7]" title={skillName} aria-label={skillName} />;
       case "Vercel":
-        return <SiVercel className="w-5 h-5 text-white" />;
+        return <SiVercel className="w-5 h-5 text-white" title={skillName} aria-label={skillName} />;
       case "Render":
-        return <SiRender className="w-5 h-5 text-[#46e3b7]" />;
+        return <SiRender className="w-5 h-5 text-[#46e3b7]" title={skillName} aria-label={skillName} />;
 
       default:
-        return <SiShopify className="w-5 h-5 text-[#95bf47]" />;
+        return <SiShopify className="w-5 h-5 text-[#95bf47]" title={skillName} aria-label={skillName} />;
     }
   };
 
@@ -247,9 +247,9 @@ export function Skills() {
                     )}
                   </div>
 
-                  <h4 className="text-sm font-bold text-white group-hover:text-accent transition-colors leading-tight">
+                  <h3 className="text-sm font-bold text-white group-hover:text-accent transition-colors leading-tight">
                     {skill.name}
-                  </h4>
+                  </h3>
                 </div>
               </motion.div>
             ))}

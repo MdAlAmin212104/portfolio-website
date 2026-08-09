@@ -20,7 +20,6 @@ import {
   X,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaFacebook, FaWhatsapp } from "react-icons/fa6";
-import confetti from "canvas-confetti";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -259,6 +258,7 @@ export function Contact() {
       if (response.ok && result.success) {
         // Success!
         try {
+          const confetti = (await import("canvas-confetti")).default;
           confetti({
             particleCount: 100,
             spread: 80,
@@ -318,7 +318,7 @@ export function Contact() {
       {/* Toast Container — fixed bottom-right */}
       <div
         className="fixed bottom-6 right-6 z-[9999] flex flex-col gap-3 items-end"
-        aria-live="polite"
+        role="status"
         aria-label="Notifications"
       >
         <AnimatePresence mode="popLayout">
@@ -401,7 +401,7 @@ export function Contact() {
             >
               <div className="flex items-center gap-3 overflow-hidden">
                 <div className="w-10 h-10 rounded-xl bg-[#25D366]/15 flex items-center justify-center text-[#25D366] shrink-0 group-hover:scale-105 transition-transform">
-                  <FaWhatsapp className="w-5 h-5" />
+                  <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <div className="overflow-hidden">
                   <span className="block text-xs sm:text-sm font-mono text-white truncate font-medium">
@@ -413,7 +413,7 @@ export function Contact() {
                 </div>
               </div>
               <span className="px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#25D366]/30 to-[#128C7E]/30 hover:from-[#25D366] hover:to-[#128C7E] transition-all duration-300 flex items-center gap-1.5 shrink-0 border border-[#25D366]/40 shadow-sm group-hover:from-[#25D366] group-hover:to-[#128C7E]">
-                <FaWhatsapp className="w-3.5 h-3.5" />
+                <FaWhatsapp className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Chat</span>
               </span>
             </a>
@@ -454,7 +454,7 @@ export function Contact() {
                       aria-label={social.label}
                       data-cursor="pointer"
                     >
-                      <social.icon className="w-5 h-5" />
+                      <social.icon className="w-5 h-5" aria-hidden="true" />
                     </a>
                   </MagneticButton>
                 ))}

@@ -6,11 +6,13 @@ import { PERSONAL_INFO } from "@/data/portfolioData";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
     default: `${PERSONAL_INFO.name} — ${PERSONAL_INFO.role}`,
     template: `%s | ${PERSONAL_INFO.name}`,
   },
-  description: PERSONAL_INFO.longBio,
+  description: PERSONAL_INFO.bio,
   keywords: [
     "Shopify Developer",
     "Shopify App Developer",
@@ -43,9 +45,13 @@ export const metadata: Metadata = {
   creator: PERSONAL_INFO.name,
   publisher: PERSONAL_INFO.name,
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: [
+      { url: "/images/cover-profile.webp", type: "image/webp" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/images/cover-profile.webp",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     type: "website",
@@ -138,6 +144,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} dark scroll-smooth`}
     >
       <head>
+        <link rel="preconnect" href="https://cdn.shopify.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.shopify.com" />
+        <link
+          rel="preload"
+          href="/images/Hero-image.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -8,27 +8,27 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    const duration = 400; // ms (Fast load)
-    const intervalTime = 15;
-    const steps = duration / intervalTime;
-    const increment = 100 / steps;
+    let frameId: number;
+    const startTime = performance.now();
+    const duration = 300; // ms
 
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        const next = prev + increment;
-        if (next >= 100) {
-          clearInterval(timer);
-          setTimeout(() => {
-            setIsDone(true);
-            if (onComplete) onComplete();
-          }, 50);
-          return 100;
-        }
-        return next;
-      });
-    }, intervalTime);
+    const updateProgress = (now: number) => {
+      const elapsed = now - startTime;
+      const pct = Math.min(100, (elapsed / duration) * 100);
+      setProgress(pct);
 
-    return () => clearInterval(timer);
+      if (pct < 100) {
+        frameId = requestAnimationFrame(updateProgress);
+      } else {
+        setTimeout(() => {
+          setIsDone(true);
+          if (onComplete) onComplete();
+        }, 40);
+      }
+    };
+
+    frameId = requestAnimationFrame(updateProgress);
+    return () => cancelAnimationFrame(frameId);
   }, [onComplete]);
 
   return (
@@ -56,6 +56,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
               height="64"
               viewBox="0 0 100 100"
               className="mb-8 text-primary"
+              aria-hidden="true"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}

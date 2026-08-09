@@ -157,7 +157,7 @@ function StackedProjectCard({
                   title="View Source Code"
                   data-cursor="pointer"
                 >
-                  <FaGithub className="w-4 h-4" />
+                  <FaGithub className="w-4 h-4" aria-hidden="true" />
                 </a>
               </MagneticButton>
             ) : project.liveUrl ? (
@@ -171,7 +171,7 @@ function StackedProjectCard({
                   title="View on Shopify App Store"
                   data-cursor="pointer"
                 >
-                  <SiShopify className="w-5 h-5 text-[#95bf47]" />
+                  <SiShopify className="w-5 h-5 text-[#95bf47]" title="Shopify" aria-label="Shopify" />
                 </a>
               </MagneticButton>
             ) : null}
