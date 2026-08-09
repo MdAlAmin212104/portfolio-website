@@ -126,23 +126,23 @@ export function EducationCertifications() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: idx * 0.1 }}
-                      className="glass-card p-8 rounded-3xl space-y-6 flex flex-col justify-between group hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
+                      className="glass-card p-5 sm:p-8 rounded-3xl space-y-5 sm:space-y-6 flex flex-col justify-between group hover:border-primary/50 transition-all duration-300 relative overflow-hidden max-w-full"
                     >
                       {/* Top Accent Line */}
                       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                      <div className="space-y-5">
+                      <div className="space-y-4 sm:space-y-5 min-w-0">
                         {/* Header & Degree Title */}
-                        <div className="flex items-start justify-between gap-4">
-                          <div className="flex items-center gap-3.5">
-                            <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 border border-primary/30 flex items-center justify-center text-accent group-hover:scale-105 transition-transform duration-300 shadow-md">
-                              <GraduationCap className="w-6 h-6" />
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex items-start sm:items-center gap-3 min-w-0">
+                            <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 border border-primary/30 flex items-center justify-center text-accent group-hover:scale-105 transition-transform duration-300 shadow-md shrink-0">
+                              <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6" />
                             </div>
-                            <div>
-                              <span className="text-[11px] font-mono uppercase text-accent font-semibold tracking-wider">
+                            <div className="min-w-0">
+                              <span className="text-[10px] sm:text-[11px] font-mono uppercase text-accent font-semibold tracking-wider block">
                                 {item.type}
                               </span>
-                              <h4 className="text-lg sm:text-xl font-bold text-white group-hover:text-primary transition-colors leading-snug">
+                              <h4 className="text-base sm:text-xl font-bold text-white group-hover:text-primary transition-colors leading-snug break-words">
                                 {item.degree}
                               </h4>
                             </div>
@@ -150,21 +150,21 @@ export function EducationCertifications() {
                         </div>
 
                         {/* Details Badges */}
-                        <div className="flex items-center gap-2.5 text-xs font-mono text-muted flex-wrap pt-1">
-                          <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1 rounded-full border border-white/10 text-white font-medium">
-                            <Building2 className="w-3.5 h-3.5 text-primary" />
-                            {item.institution}
+                        <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono text-muted flex-wrap pt-1 max-w-full min-w-0">
+                          <span className="flex items-center gap-1.5 bg-white/5 px-2.5 sm:px-3 py-1 rounded-full border border-white/10 text-white font-medium max-w-full break-words">
+                            <Building2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                            <span className="truncate max-w-[200px] sm:max-w-none">{item.institution}</span>
                           </span>
-                          <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-                            <Calendar className="w-3.5 h-3.5 text-secondary" />
+                          <span className="flex items-center gap-1.5 bg-white/5 px-2.5 sm:px-3 py-1 rounded-full border border-white/10 shrink-0">
+                            <Calendar className="w-3.5 h-3.5 text-secondary shrink-0" />
                             {item.period}
                           </span>
-                          <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-                            <MapPin className="w-3.5 h-3.5 text-accent" />
+                          <span className="flex items-center gap-1.5 bg-white/5 px-2.5 sm:px-3 py-1 rounded-full border border-white/10 shrink-0">
+                            <MapPin className="w-3.5 h-3.5 text-accent shrink-0" />
                             {item.location}
                           </span>
                           <span
-                            className={`px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase border ${
+                            className={`px-2.5 sm:px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase border shrink-0 ${
                               item.status === "Running"
                                 ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30 animate-pulse"
                                 : "bg-primary/10 text-primary border-primary/30"
@@ -226,7 +226,7 @@ export function EducationCertifications() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: idx * 0.1 }}
-                      className="glass-card p-7 rounded-3xl space-y-6 flex flex-col justify-between group hover:border-accent/50 transition-all duration-300 relative overflow-hidden"
+                      className="glass-card p-5 sm:p-7 rounded-3xl space-y-6 flex flex-col justify-between group hover:border-accent/50 transition-all duration-300 relative overflow-hidden"
                     >
                       {/* Ambient corner glow */}
                       <div className="absolute -top-12 -right-12 w-24 h-24 bg-accent/10 blur-2xl rounded-full group-hover:bg-accent/20 transition-colors pointer-events-none" />

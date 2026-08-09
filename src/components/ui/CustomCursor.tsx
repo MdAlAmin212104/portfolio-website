@@ -15,8 +15,12 @@ export function CustomCursor() {
   const trailY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Hide cursor on touch screens
-    if (window.matchMedia("(pointer: coarse)").matches) {
+    // Hide cursor on touch screens or touch-capable devices
+    if (
+      window.matchMedia("(pointer: coarse)").matches ||
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0
+    ) {
       return;
     }
 

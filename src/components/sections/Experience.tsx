@@ -22,13 +22,13 @@ export function TimelineNode() {
 export function StatisticsRow({ metrics }: { metrics: { label: string; value: string }[] }) {
   if (!metrics || metrics.length === 0) return null;
   return (
-    <div className="mt-4 p-4 rounded-2xl glass-dock border border-white/10 grid grid-cols-3 divide-x divide-white/10 text-center shadow-inner">
+    <div className="mt-4 p-2.5 sm:p-4 rounded-2xl glass-dock border border-white/10 grid grid-cols-3 divide-x divide-white/10 text-center shadow-inner max-w-full">
       {metrics.map((m, mIdx) => (
-        <div key={mIdx} className="px-2">
-          <div className="text-xl sm:text-2xl font-black text-accent tracking-tight">
+        <div key={mIdx} className="px-1 sm:px-2 min-w-0">
+          <div className="text-sm sm:text-2xl font-black text-accent tracking-tight truncate">
             {m.value}
           </div>
-          <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400 mt-0.5">
+          <div className="text-[9px] sm:text-xs font-bold uppercase tracking-wider text-gray-400 mt-0.5 truncate">
             {m.label}
           </div>
         </div>
@@ -40,11 +40,11 @@ export function StatisticsRow({ metrics }: { metrics: { label: string; value: st
 {/* REUSABLE SUBCOMPONENT: TECHNOLOGY TAGS */ }
 export function TechnologyTags({ tags }: { tags: string[] }) {
   return (
-    <div className="flex flex-wrap gap-2 pt-2">
+    <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
       {tags.map((tech) => (
         <span
           key={tech}
-          className="px-3 py-1 rounded-xl text-xs font-mono text-white/90 glass-dock border border-white/10 group-hover:border-primary/30 transition-colors"
+          className="px-2.5 sm:px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono text-white/90 glass-dock border border-white/10 group-hover:border-primary/30 transition-colors"
         >
           {tech}
         </span>
@@ -62,14 +62,14 @@ export function ExperienceCard({
   getIcon: (icon?: string) => React.ReactNode;
 }) {
   return (
-    <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-5 border border-white/10 group hover:border-accent/40 transition-all duration-300 relative shadow-2xl backdrop-blur-xl">
+    <div className="glass-card p-5 sm:p-8 rounded-3xl space-y-4 sm:space-y-5 border border-white/10 group hover:border-accent/40 transition-all duration-300 relative shadow-2xl backdrop-blur-xl max-w-full">
       {/* Top Header: Company Icon Badge (Left) & Duration Pill (Right) */}
-      <div className="flex items-center justify-between gap-4">
-        <div className="w-12 h-12 rounded-2xl glass-dock border border-white/15 text-accent flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:border-accent/40 transition-all duration-300">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl glass-dock border border-white/15 text-accent flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:border-accent/40 transition-all duration-300 shrink-0">
           {getIcon(exp.icon)}
         </div>
-        <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full glass-dock text-xs font-mono font-semibold text-accent border border-accent/30 shadow-sm">
-          <Calendar className="w-3.5 h-3.5 text-accent" />
+        <div className="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full glass-dock text-[11px] sm:text-xs font-mono font-semibold text-accent border border-accent/30 shadow-sm">
+          <Calendar className="w-3.5 h-3.5 text-accent shrink-0" />
           <span>{exp.period}</span>
         </div>
       </div>
@@ -79,17 +79,17 @@ export function ExperienceCard({
         <span className="inline-block px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-secondary/20 text-accent border border-secondary/30 mb-2">
           {exp.type}
         </span>
-        <h3 className="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-primary transition-colors duration-300">
+        <h3 className="text-xl sm:text-3xl font-extrabold text-white group-hover:text-primary transition-colors duration-300 leading-snug break-words">
           {exp.role}
         </h3>
         <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-400 font-medium mt-1">
           <span className="flex items-center gap-1 text-white/90 font-semibold">
-            <Building2 className="w-3.5 h-3.5 text-accent" />
+            <Building2 className="w-3.5 h-3.5 text-accent shrink-0" />
             {exp.company}
           </span>
           <span className="text-gray-500">•</span>
           <span className="flex items-center gap-1 text-gray-400">
-            <MapPin className="w-3.5 h-3.5 text-gray-400" />
+            <MapPin className="w-3.5 h-3.5 text-gray-400 shrink-0" />
             {exp.location}
           </span>
         </div>

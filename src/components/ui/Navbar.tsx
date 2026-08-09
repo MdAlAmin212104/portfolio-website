@@ -56,24 +56,35 @@ export function Navbar() {
     }
   };
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 sm:px-8 pt-4 sm:pt-6 transition-all duration-300 pointer-events-none">
+      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-2 sm:px-8 pt-3 sm:pt-6 transition-all duration-300 pointer-events-none">
         <nav
-          className={`w-full max-w-6xl flex items-center justify-between px-6 py-3 rounded-full pointer-events-auto transition-all duration-500 ${
+          className={`w-full max-w-6xl flex items-center justify-between px-3.5 sm:px-6 py-2.5 sm:py-3 rounded-full pointer-events-auto transition-all duration-500 ${
             isScrolled
-              ? "glass-dock py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)] border-white/10"
-              : "bg-transparent border-transparent py-4"
+              ? "glass-dock py-2.5 sm:py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)] border-white/10"
+              : "bg-transparent border-transparent py-3 sm:py-4"
           }`}
         >
           {/* Brand Logo with Rounded Avatar & Glowing Border */}
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, "#hero")}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
             data-cursor="pointer"
           >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary via-secondary to-accent p-[2px] shadow-[0_0_15px_rgba(79,140,255,0.4)] transition-transform duration-300 group-hover:scale-105">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary via-secondary to-accent p-[2px] shadow-[0_0_15px_rgba(79,140,255,0.4)] transition-transform duration-300 group-hover:scale-105">
               <div className="w-full h-full bg-[#0B0F19] rounded-full overflow-hidden flex items-center justify-center border border-white/10">
                 <img
                   src="/images/cover-profile.webp"
@@ -88,10 +99,10 @@ export function Navbar() {
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-bold text-white tracking-wide group-hover:text-accent transition-colors">
+              <span className="text-xs sm:text-sm font-bold text-white tracking-wide group-hover:text-accent transition-colors">
                 Alamin I.
               </span>
-              <span className="text-[10px] text-muted flex items-center gap-1 font-mono">
+              <span className="text-[9px] sm:text-[10px] text-muted flex items-center gap-1 font-mono">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 Available
               </span>
@@ -144,7 +155,7 @@ export function Navbar() {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-xl text-white glass-dock hover:border-primary/50 transition-colors"
+            className="md:hidden p-2 rounded-xl text-white glass-dock hover:border-primary/50 transition-colors shrink-0"
             aria-label="Toggle Navigation Menu"
             data-cursor="pointer"
           >
@@ -161,7 +172,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#0B0F19]/95 backdrop-blur-2xl flex flex-col justify-center px-8 py-16 md:hidden"
+            className="fixed inset-0 z-40 bg-[#0B0F19]/95 backdrop-blur-2xl flex flex-col justify-center px-6 py-12 md:hidden overflow-y-auto max-h-screen"
           >
             <div className="flex flex-col gap-6 text-center">
               {NAV_LINKS.map((link, idx) => (

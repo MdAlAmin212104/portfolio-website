@@ -79,31 +79,31 @@ export function About() {
         />
 
         {/* Top Story & Statistics Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch mb-16">
           {/* Main Narrative Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 glass-card p-8 sm:p-10 rounded-3xl flex flex-col justify-between space-y-6"
+            className="lg:col-span-7 glass-card p-5 sm:p-10 rounded-3xl flex flex-col justify-between space-y-5 sm:space-y-6 max-w-full"
           >
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-mono text-primary">
-                <Terminal className="w-3.5 h-3.5" />
-                <span>Creative Engineering Journey</span>
+              <div className="inline-flex max-w-full items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[11px] sm:text-xs font-mono text-primary">
+                <Terminal className="w-3.5 h-3.5 shrink-0" />
+                <span className="truncate">Creative Engineering Journey</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white leading-snug">
+              <h3 className="text-xl sm:text-3xl font-bold text-white leading-snug break-words">
                 Shopify Developer | Custom Apps, Themes & Integrations
               </h3>
-              <p className="text-muted text-sm sm:text-base leading-relaxed">
+              <p className="text-muted text-xs sm:text-base leading-relaxed">
                 {PERSONAL_INFO.longBio}
               </p>
             </div>
           </motion.div>
 
           {/* Stats Grid Card */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+          <div className="lg:col-span-5 grid grid-cols-2 gap-3 sm:gap-4 max-w-full">
             {PERSONAL_INFO.stats.map((stat, idx) => (
               <motion.div
                 key={stat.label}
@@ -111,12 +111,12 @@ export function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-card p-6 sm:p-8 rounded-3xl flex flex-col justify-center items-center text-center group hover:border-primary/40"
+                className="glass-card p-4 sm:p-8 rounded-3xl flex flex-col justify-center items-center text-center group hover:border-primary/40 min-w-0"
               >
-                <div className="text-4xl sm:text-5xl font-extrabold text-gradient-primary font-mono mb-2">
+                <div className="text-3xl sm:text-5xl font-extrabold text-gradient-primary font-mono mb-1.5 sm:mb-2 truncate max-w-full">
                   <Counter value={stat.value} suffix={stat.suffix} />
                 </div>
-                <span className="text-xs sm:text-sm font-medium text-muted uppercase tracking-wider group-hover:text-white transition-colors">
+                <span className="text-[10px] sm:text-sm font-medium text-muted uppercase tracking-wider group-hover:text-white transition-colors leading-tight">
                   {stat.label}
                 </span>
               </motion.div>

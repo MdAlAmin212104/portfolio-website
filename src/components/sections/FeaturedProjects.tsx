@@ -32,9 +32,13 @@ function StackedProjectCard({
 }: CardItemProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Sticky top offset (staggered 36px for step-by-step top tabs)
-  const topOffset = 90 + idx * 36;
+  // Sticky top offset (staggered 28px on mobile, 36px on desktop)
+  const topOffset = 76 + idx * 28;
   const isEven = idx % 2 === 0;
+
+  // Stacking scale animation: collapses on scroll down, extends on scroll up
+  const targetScale = 1 - (total - idx) * 0.04;
+  const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
     <div
@@ -46,7 +50,8 @@ function StackedProjectCard({
       }}
     >
       <motion.div
-        className="w-full glass-card p-6 sm:p-10 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border border-white/10 group hover:border-primary/40 shadow-[0_-12px_40px_rgba(0,0,0,0.6)] backdrop-blur-xl bg-[#0B0F19]/95 relative overflow-hidden transition-colors duration-300"
+        style={{ scale }}
+        className="w-full glass-card p-5 sm:p-10 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center border border-white/10 group hover:border-primary/40 shadow-[0_-12px_40px_rgba(0,0,0,0.6)] backdrop-blur-xl bg-[#0B0F19]/95 relative overflow-hidden transition-colors duration-300 max-w-full origin-top"
       >
         {/* Background Subtle Ambient Glow */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
@@ -59,7 +64,7 @@ function StackedProjectCard({
         >
           <div
             onClick={() => onSelectProject(project)}
-            className="relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden cursor-pointer group/img border border-white/10 shadow-2xl"
+            className="relative w-full h-48 sm:h-72 lg:h-96 rounded-2xl overflow-hidden cursor-pointer group/img border border-white/10 shadow-2xl"
             data-cursor="pointer"
           >
             <img
@@ -73,7 +78,7 @@ function StackedProjectCard({
 
             {/* Inspect Details Overlay Badge */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/40 backdrop-blur-xs">
-              <span className="px-6 py-3 rounded-full text-xs font-bold text-white bg-primary shadow-neon uppercase tracking-wider flex items-center gap-2">
+              <span className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs font-bold text-white bg-primary shadow-neon uppercase tracking-wider flex items-center gap-2">
                 <Sparkles className="w-4 h-4" />
                 Inspect Details
               </span>
@@ -83,31 +88,31 @@ function StackedProjectCard({
 
         {/* Content Column */}
         <div
-          className={`lg:col-span-5 space-y-5 ${
+          className={`lg:col-span-5 space-y-4 sm:space-y-5 ${
             isEven ? "lg:order-2" : "lg:order-1"
           }`}
         >
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/20 text-accent border border-primary/30">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <span className="px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider bg-primary/20 text-accent border border-primary/30">
               {project.category}
             </span>
             {project.metrics && (
-              <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+              <span className="text-[11px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 sm:px-3 py-1 rounded-full border border-emerald-500/20">
                 {project.metrics}
               </span>
             )}
           </div>
 
           <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-primary transition-colors">
+            <h3 className="text-xl sm:text-3xl font-bold text-white group-hover:text-primary transition-colors leading-tight break-words">
               {project.title}
             </h3>
-            <p className="text-sm font-medium text-accent mt-1">
+            <p className="text-xs sm:text-sm font-medium text-accent mt-1">
               {project.subtitle}
             </p>
           </div>
 
-          <p className="text-sm text-muted leading-relaxed">
+          <p className="text-xs sm:text-sm text-muted leading-relaxed">
             {project.description}
           </p>
 
@@ -122,11 +127,11 @@ function StackedProjectCard({
           </ul>
 
           {/* Tech Stack */}
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 rounded-xl text-xs font-mono text-white glass-dock border border-white/5"
+                className="px-2.5 sm:px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono text-white glass-dock border border-white/5"
               >
                 {tech}
               </span>
@@ -134,11 +139,11 @@ function StackedProjectCard({
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-4 pt-4">
+          <div className="flex flex-wrap items-center gap-3 pt-3 sm:pt-4">
             <MagneticButton strength={0.25}>
               <button
                 onClick={() => onSelectProject(project)}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold text-white bg-gradient-to-r from-primary to-accent shadow-neon hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold text-white bg-gradient-to-r from-primary to-accent shadow-neon hover:opacity-90 transition-opacity"
                 data-cursor="pointer"
               >
                 <span>Full Case Study</span>

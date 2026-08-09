@@ -171,14 +171,14 @@ export function Skills() {
         />
 
         {/* Category Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
           {SKILL_CATEGORIES.map((cat, idx) => {
             const isActive = activeCategoryIndex === idx;
             return (
               <button
                 key={cat.title}
                 onClick={() => setActiveCategoryIndex(idx)}
-                className={`relative flex items-center gap-2 px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-300 ${
+                className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-300 ${
                   isActive
                     ? "text-white shadow-neon border-primary/50"
                     : "text-gray-400 hover:text-white glass-dock border-white/5 hover:border-white/15"
@@ -195,7 +195,7 @@ export function Skills() {
                 <span className="relative z-10">{getCategoryIcon(cat.title)}</span>
                 <span className="relative z-10">{cat.title}</span>
                 <span
-                  className={`relative z-10 text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
+                  className={`relative z-10 text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full font-mono font-bold ${
                     isActive ? "bg-white/20 text-white" : "bg-white/10 text-gray-300"
                   }`}
                 >
@@ -207,7 +207,7 @@ export function Skills() {
         </div>
 
         {/* Active Category Info Subtitle */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6 sm:mb-8">
           <span className="text-xs sm:text-sm font-mono font-medium text-gray-400">
             Showing <span className="text-accent font-bold">{activeCategory.skills.length}</span> technologies in{" "}
             <span className="text-white font-bold">{activeCategory.title}</span>
@@ -222,7 +222,7 @@ export function Skills() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3.5 sm:gap-4"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 sm:gap-4"
           >
             {activeCategory.skills.map((skill, idx) => (
               <motion.div
@@ -230,25 +230,25 @@ export function Skills() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.25, delay: idx * 0.02 }}
-                className="glass-card p-4 rounded-2xl border border-white/10 hover:border-accent/40 transition-all duration-300 group hover:shadow-neon hover:-translate-y-1 relative overflow-hidden flex flex-col justify-between"
+                className="glass-card p-3 sm:p-4 rounded-2xl border border-white/10 hover:border-accent/40 transition-all duration-300 group hover:shadow-neon hover:-translate-y-1 relative overflow-hidden flex flex-col justify-between max-w-full"
               >
                 {/* Ambient Subtle Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                 <div className="relative z-10">
-                  <div className="flex items-center justify-between gap-2 mb-2.5">
-                    <div className="w-10 h-10 rounded-xl glass-dock border border-white/15 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:border-accent/40 transition-all duration-300 shadow-md bg-white/5">
+                  <div className="flex items-center justify-between gap-1.5 mb-2">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl glass-dock border border-white/15 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:border-accent/40 transition-all duration-300 shadow-md bg-white/5">
                       {getOfficialSkillIcon(skill.name)}
                     </div>
 
                     {skill.highlight && (
-                      <span className="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono uppercase tracking-wider bg-accent/15 text-accent border border-accent/30 font-semibold text-right shrink-0">
+                      <span className="px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[10px] font-mono uppercase tracking-wider bg-accent/15 text-accent border border-accent/30 font-semibold text-right shrink-0">
                         {skill.highlight}
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-sm font-bold text-white group-hover:text-accent transition-colors leading-tight">
+                  <h3 className="text-xs sm:text-sm font-bold text-white group-hover:text-accent transition-colors leading-tight break-words">
                     {skill.name}
                   </h3>
                 </div>

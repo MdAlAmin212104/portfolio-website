@@ -64,10 +64,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           exit={{ opacity: 0, scale: 0.95, y: 24 }}
           transition={{ type: "spring", damping: 28, stiffness: 320 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative z-10 w-full max-w-4xl rounded-3xl border border-white/15 bg-[#0B0F19] shadow-2xl"
+          className="relative z-10 w-full max-w-4xl mx-2 sm:mx-0 rounded-3xl border border-white/15 bg-[#0B0F19] shadow-2xl"
           style={{
             /* Explicit fixed height — CRITICAL for inner overflow-y:auto to work */
-            height: "min(88vh, 820px)",
+            height: "min(90vh, 820px)",
             display: "flex",
             flexDirection: "column",
             overflow: "hidden",   /* clip children, NOT scroll */
@@ -75,22 +75,22 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         >
           {/* ── Header (never scrolls) ── */}
           <div
-            className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#0f1525]"
+            className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-white/10 bg-[#0f1525]"
             style={{ flexShrink: 0 }}
           >
-            <div className="flex items-center gap-3">
-              <span className="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/20 text-accent border border-primary/30">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-wider bg-primary/20 text-accent border border-primary/30">
                 {project.category}
               </span>
               {project.metrics && (
-                <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+                <span className="text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 sm:px-2.5 py-1 rounded-full border border-emerald-500/20">
                   {project.metrics}
                 </span>
               )}
             </div>
             <button
               onClick={onClose}
-              className="p-2 rounded-full hover:bg-white/10 text-muted hover:text-white transition-colors"
+              className="p-1.5 sm:p-2 rounded-full hover:bg-white/10 text-muted hover:text-white transition-colors"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -105,23 +105,23 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                4. NO display:flex  → block container so children stack normally
           ── */}
           <div
-  ref={scrollBodyRef}
-  className="modal-scroll-body"
-  data-lenis-prevent
-  style={{
-    flex: 1,
-    minHeight: 0,
-    overflowY: "auto",
-    overscrollBehavior: "contain",
-  }}
->
+            ref={scrollBodyRef}
+            className="modal-scroll-body"
+            data-lenis-prevent
+            style={{
+              flex: 1,
+              minHeight: 0,
+              overflowY: "auto",
+              overscrollBehavior: "contain",
+            }}
+          >
             {/* Inner wrapper for padding — keeps padding from breaking the scroll calculation */}
-            <div style={{ padding: "24px 32px", display: "flex", flexDirection: "column", gap: "20px" }}>
+            <div className="p-4 sm:p-8 flex flex-col gap-4 sm:gap-6">
 
               {/* Image Banner */}
               <div
-                className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
-                style={{ height: "260px", flexShrink: 0 }}
+                className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl h-48 sm:h-64"
+                style={{ flexShrink: 0 }}
               >
                 <img
                   src={project.image}
