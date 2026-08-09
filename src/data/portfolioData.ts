@@ -911,7 +911,7 @@ export const PROJECTS: Project[] = [
     techStack: ["React.js", "JavaScript", "HTML5", "CSS3", "jsPDF", "Netlify"],
     githubUrl: "",
     liveUrl: "https://create-invoicepdf.netlify.app/",
-    featured: true,
+    featured: false,
     metrics: "Live Full Stack App",
     highlights: [
       "Dynamic multi-field invoice form with real-time subtotal, tax & grand total calculations",
@@ -930,7 +930,7 @@ export const PROJECTS: Project[] = [
     techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "Firebase Auth", "JavaScript", "Tailwind CSS", "Firebase Hosting"],
     githubUrl: "",
     liveUrl: "https://spicyking-4c20c.web.app/",
-    featured: true,
+    featured: false,
     metrics: "Live Full Stack App",
     highlights: [
       "Role-based access: admin panel with full CRUD menu management, live storefront for visitors",
@@ -949,7 +949,7 @@ export const PROJECTS: Project[] = [
     techStack: ["React.js", "Firebase Auth", "Firestore", "JavaScript", "Tailwind CSS", "Firebase Hosting"],
     githubUrl: "",
     liveUrl: "https://simple-firebase-586eb.web.app/",
-    featured: true,
+    featured: false,
     metrics: "Live Full Stack App",
     highlights: [
       "Admin dashboard to create surveys & generate links; users vote with enforced one-vote rule",
@@ -968,7 +968,7 @@ export const PROJECTS: Project[] = [
     techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "Firebase Auth", "JavaScript", "Tailwind CSS", "Firebase Hosting"],
     githubUrl: "",
     liveUrl: "https://sunset-20cd7.web.app/",
-    featured: true,
+    featured: false,
     metrics: "Live Full Stack App",
     highlights: [
       "Admin dashboard to add and manage hotel rooms — changes instantly visible on live site",
@@ -987,7 +987,7 @@ export const PROJECTS: Project[] = [
     techStack: ["React.js", "Firebase Auth", "Firestore", "REST API", "JavaScript", "Tailwind CSS", "Firebase Hosting"],
     githubUrl: "",
     liveUrl: "https://journeylive.web.app/",
-    featured: true,
+    featured: false,
     metrics: "Live Full Stack App",
     highlights: [
       "Live API-driven destination data with full Create, Read, Update & Delete functionality",

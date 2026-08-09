@@ -184,7 +184,7 @@ function StackedProjectCard({
 
 export function FeaturedProjects({ onSelectProject }: FeaturedProjectsProps) {
   const featuredProjects = (() => {
-    const featured = PROJECTS.filter((p) => p.featured);
+    const featured = PROJECTS.filter((p) => p.featured && p.category !== "Full Stack");
     const groups: Record<string, typeof featured> = {};
     for (const p of featured) {
       if (!groups[p.category]) groups[p.category] = [];
