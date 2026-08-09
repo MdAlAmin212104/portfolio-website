@@ -97,7 +97,8 @@ export function Hero() {
 
             <MagneticButton strength={0.25}>
               <a
-                href="/resume.pdf"
+                href={PERSONAL_INFO.resume}
+                download="Shopify_Developer_resume_of_Al_Amin.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-sm font-bold text-white glass-card border border-primary/40 hover:border-accent/80 hover:bg-primary/20 hover:shadow-neon hover:scale-105 transition-all duration-300 shadow-lg"

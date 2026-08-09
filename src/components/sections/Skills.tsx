@@ -73,6 +73,7 @@ export function Skills() {
       case "Theme App Extensions":
       case "App Blocks":
       case "Metafields":
+      case "Shopify Metaobjects":
       case "Shopify Functions":
       case "Billing API":
       case "Theme Dev":
