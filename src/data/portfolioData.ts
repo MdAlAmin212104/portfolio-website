@@ -93,7 +93,7 @@ export const PERSONAL_INFO = {
     { label: "Years Experience", value: 3, suffix: "+" },
     { label: "Projects Completed", value: 150, suffix: "+" },
     { label: "Happy Clients", value: 120, suffix: "+" },
-    { label: "Shopify Apps Published", value: 1, suffix: "" },
+    { label: "Shopify Apps Published", value: 2, suffix: "" },
   ],
 };
 
