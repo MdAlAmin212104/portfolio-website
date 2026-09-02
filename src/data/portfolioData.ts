@@ -399,33 +399,47 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    id: "product-note",
-    title: "Shopify Product Notes App",
-    subtitle: "Merchant Product Notes, Internal Reminders & Activity Dashboard",
-    category: "Shopify App",
-    image: "/images/Product.webp",
-    description: "This app allows merchants to create separate product notes for each of their products, helping them track issues, improvements, and important reminders. Merchants can add, update, or delete notes effortlessly.",
-    fullDescription: "Shopify Product Notes empowers e-commerce merchants to attach internal notes, improvement ideas, and operational reminders directly to individual products. Integrated into Shopify Admin Actions and Admin Blocks using Metafields and GraphQL, the dashboard provides a clear overview of note counts, product coverage, and overall catalog activity insights.",
-    techStack: [
-      "React",
-      "React Router",
-      "Polaris Web Components",
-      "GraphQL",
-      "Metafields",
-      "TypeScript",
-      "Shopify Admin Actions",
-      "Shopify Admin Blocks"
-    ],
-    githubUrl: "https://github.com/MdAlAmin212104/product-note",
-    liveUrl: "https://github.com/MdAlAmin212104/product-note",
-    featured: true,
-    metrics: "Shopify Admin Extension",
-    highlights: [
-      "Create, update, & delete product-specific internal notes & operational reminders",
-      "Deeply integrated with Shopify Admin Actions & Admin Blocks via Metafields",
-      "Dashboard analytics overview of notes created & product coverage insights"
-    ],
-  },
+  id: "product-note",
+  title: "NotePilot Manage Product Notes",
+  subtitle: "Internal & Customer-Facing Product Notes for Shopify",
+  category: "Shopify App",
+  image: "/images/Product.webp",
+
+  description:
+    "A Shopify app that helps merchants create and manage internal staff notes and customer-facing notes for products, collections, and product tags.",
+
+  fullDescription:
+    "NotePilot is a Shopify app designed to simplify product note management for merchants. It allows store teams to create internal operational notes, reminders, and customer-facing product information from a centralized dashboard or directly inside Shopify product admin pages. Merchants can assign notes to specific products, collections, or product tags, set priority levels, pin important notes, and use reusable templates. Customer-facing notes can also be displayed directly on product pages with customizable styling through the Shopify theme editor.",
+
+  techStack: [
+    "React",
+    "React Router",
+    "TypeScript",
+    "Shopify GraphQL API",
+    "Shopify Metafields",
+    "Shopify Admin Actions",
+    "Shopify Admin Blocks",
+    "Theme App Extension",
+    "Polaris Web Components"
+  ],
+
+  githubUrl: "",
+  liveUrl: "https://apps.shopify.com/manage-product-notes",
+
+  featured: true,
+
+  metrics: "Shopify App Store Live",
+
+  highlights: [
+    "Create internal staff notes and customer-facing product notes",
+    "Assign notes to specific products, collections, or product tags",
+    "Set priority levels and pin important notes for quick access",
+    "Manage notes directly from Shopify product admin pages",
+    "Use reusable note templates for faster note creation",
+    "Display customer-facing notes directly on product pages",
+    "Customize storefront note styles through the Shopify theme editor"
+  ]
+},
   {
     id: "qr-code-app",
     title: "Shopify Product QR Code App",
