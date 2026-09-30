@@ -93,7 +93,7 @@ export const PERSONAL_INFO = {
     { label: "Years Experience", value: 3, suffix: "+" },
     { label: "Projects Completed", value: 150, suffix: "+" },
     { label: "Happy Clients", value: 120, suffix: "+" },
-    { label: "Shopify Apps Published", value: 2, suffix: "" },
+    { label: "Shopify Apps Published", value: 3, suffix: "" },
   ],
 };
 
@@ -370,6 +370,34 @@ export const EXPERIENCES: ExperienceItem[] = [
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    id: "discountflow",
+    title: "DiscountFlow – Smart Discount",
+    subtitle: "Automated Multi-Stage Scheduled Discounts for Shopify",
+    category: "Shopify App",
+    image: "/images/DiscountFlow.png",
+    description: "Published Shopify App on the official Shopify App Store. DiscountFlow enables merchants to automate time-based discount campaigns with scheduled multi-stage discounts for products and collections without manual updates.",
+    fullDescription: "DiscountFlow – Smart Discount is a published, production-ready Shopify App built using Remix, Shopify App Bridge, Polaris Web Components, Node.js, and GraphQL Admin API. It helps e-commerce merchants automate time-based discount campaigns with smart scheduling. Merchants can create multi-stage discounts that automatically change over time for products or entire collections—perfect for seasonal sales, flash promotions, and tiered price reductions from one intuitive dashboard.",
+    techStack: [
+      "Shopify App",
+      "Remix",
+      "Shopify Polaris",
+      "GraphQL Admin API",
+      "App Bridge",
+      "React",
+      "Node.js",
+      "TypeScript"
+    ],
+    githubUrl: "",
+    liveUrl: "https://apps.shopify.com/discountflow-1",
+    featured: true,
+    metrics: "Shopify App Store Live",
+    highlights: [
+      "Automate multi-stage scheduled discount campaigns with automatic price transitions",
+      "Schedule campaign start and end dates for targeted products or collections in advance",
+      "Embedded Shopify admin dashboard built with Shopify Polaris, App Bridge & GraphQL Admin API"
+    ],
+  },
   {
     id: "autofit-pro",
     title: "AutoFit Pro ‑ Year Make Model",
